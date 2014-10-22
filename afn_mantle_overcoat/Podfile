@@ -1,0 +1,13 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'afn_mantle_overcoat' do
+
+end
+
+target 'afn_mantle_overcoatTests' do
+
+end
+pod 'Overcoat', '~>2.0'
