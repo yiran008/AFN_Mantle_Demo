@@ -25,17 +25,9 @@
 		3BADBC0819D7FC3A001F091D /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BADBBF619D7FC3A001F091D /* UIRefreshControl+AFNetworking.m */; };
 		3BADBC0919D7FC3A001F091D /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BADBBF819D7FC3A001F091D /* UIWebView+AFNetworking.m */; };
 		3BADBC0D19D81FDC001F091D /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BADBC0C19D81FDC001F091D /* AFAppDotNetAPIClient.m */; };
-		4E120EAD18F66CD500C8CAB4 /* BBMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E120EA218F66CD500C8CAB4 /* BBMessageCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4E120EAE18F66CD500C8CAB4 /* BBMessageCellLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E120EA418F66CD500C8CAB4 /* BBMessageCellLeftView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4E120EAF18F66CD500C8CAB4 /* BBMessageCellLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E120EA518F66CD500C8CAB4 /* BBMessageCellLeftView.xib */; };
-		4E120EB018F66CD500C8CAB4 /* BBMessageCellRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E120EA718F66CD500C8CAB4 /* BBMessageCellRightView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4E120EB118F66CD500C8CAB4 /* BBMessageCellRightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E120EA818F66CD500C8CAB4 /* BBMessageCellRightView.xib */; };
-		4E120EB218F66CD500C8CAB4 /* BBMessageChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E120EAA18F66CD500C8CAB4 /* BBMessageChat.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4E120EB318F66CD500C8CAB4 /* BBMessageChat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E120EAB18F66CD500C8CAB4 /* BBMessageChat.xib */; };
 		4E4B997719221D6E00BC2050 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4B997619221D6E00BC2050 /* Security.framework */; };
 		4E4B997919221D7500BC2050 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4B997819221D7400BC2050 /* libiconv.dylib */; };
 		5F022CA8196E91F3009DFB94 /* knowledge_5_1_0.db in Resources */ = {isa = PBXBuildFile; fileRef = 5F022CA7196E91F3009DFB94 /* knowledge_5_1_0.db */; };
-		5F09EE7218FEAE8400EC5494 /* enter_kuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F09EE7118FEAE8400EC5494 /* enter_kuang@2x.png */; };
 		5F5F93201959187C007250E3 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5F931F1959187C007250E3 /* libresolv.dylib */; };
 		5FA68670195BF6D800AE9702 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA6866F195BF6D800AE9702 /* StoreKit.framework */; };
 		5FA68672195BF6F500AE9702 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA68671195BF6F500AE9702 /* CoreMotion.framework */; };
@@ -129,22 +121,9 @@
 		3BADBBF819D7FC3A001F091D /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		3BADBC0B19D81FDC001F091D /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
 		3BADBC0C19D81FDC001F091D /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
-		4E120EA118F66CD500C8CAB4 /* BBMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMessageCell.h; sourceTree = "<group>"; };
-		4E120EA218F66CD500C8CAB4 /* BBMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMessageCell.m; sourceTree = "<group>"; };
-		4E120EA318F66CD500C8CAB4 /* BBMessageCellLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMessageCellLeftView.h; sourceTree = "<group>"; };
-		4E120EA418F66CD500C8CAB4 /* BBMessageCellLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMessageCellLeftView.m; sourceTree = "<group>"; };
-		4E120EA518F66CD500C8CAB4 /* BBMessageCellLeftView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBMessageCellLeftView.xib; sourceTree = "<group>"; };
-		4E120EA618F66CD500C8CAB4 /* BBMessageCellRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMessageCellRightView.h; sourceTree = "<group>"; };
-		4E120EA718F66CD500C8CAB4 /* BBMessageCellRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMessageCellRightView.m; sourceTree = "<group>"; };
-		4E120EA818F66CD500C8CAB4 /* BBMessageCellRightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBMessageCellRightView.xib; sourceTree = "<group>"; };
-		4E120EA918F66CD500C8CAB4 /* BBMessageChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMessageChat.h; sourceTree = "<group>"; };
-		4E120EAA18F66CD500C8CAB4 /* BBMessageChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBMessageChat.m; sourceTree = "<group>"; };
-		4E120EAB18F66CD500C8CAB4 /* BBMessageChat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBMessageChat.xib; sourceTree = "<group>"; };
-		4E120EAC18F66CD500C8CAB4 /* BBMessageChatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBMessageChatDelegate.h; sourceTree = "<group>"; };
 		4E4B997619221D6E00BC2050 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4E4B997819221D7400BC2050 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		5F022CA7196E91F3009DFB94 /* knowledge_5_1_0.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = knowledge_5_1_0.db; sourceTree = "<group>"; };
-		5F09EE7118FEAE8400EC5494 /* enter_kuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter_kuang@2x.png"; sourceTree = "<group>"; };
 		5F5F931F1959187C007250E3 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		5FA6866F195BF6D800AE9702 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5FA68671195BF6F500AE9702 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -314,50 +293,6 @@
 			path = NetworkingExtensions;
 			sourceTree = "<group>";
 		};
-		4E120E9D18F66C9F00C8CAB4 /* MessageChat */ = {
-			isa = PBXGroup;
-			children = (
-				5F09EE6F18FEAE8400EC5494 /* API */,
-				5F09EE7018FEAE8400EC5494 /* Image */,
-				4E120EA018F66CC100C8CAB4 /* ViewController */,
-			);
-			path = MessageChat;
-			sourceTree = "<group>";
-		};
-		4E120EA018F66CC100C8CAB4 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4E120EA118F66CD500C8CAB4 /* BBMessageCell.h */,
-				4E120EA218F66CD500C8CAB4 /* BBMessageCell.m */,
-				4E120EA318F66CD500C8CAB4 /* BBMessageCellLeftView.h */,
-				4E120EA418F66CD500C8CAB4 /* BBMessageCellLeftView.m */,
-				4E120EA518F66CD500C8CAB4 /* BBMessageCellLeftView.xib */,
-				4E120EA618F66CD500C8CAB4 /* BBMessageCellRightView.h */,
-				4E120EA718F66CD500C8CAB4 /* BBMessageCellRightView.m */,
-				4E120EA818F66CD500C8CAB4 /* BBMessageCellRightView.xib */,
-				4E120EA918F66CD500C8CAB4 /* BBMessageChat.h */,
-				4E120EAA18F66CD500C8CAB4 /* BBMessageChat.m */,
-				4E120EAB18F66CD500C8CAB4 /* BBMessageChat.xib */,
-				4E120EAC18F66CD500C8CAB4 /* BBMessageChatDelegate.h */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		5F09EE6F18FEAE8400EC5494 /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		5F09EE7018FEAE8400EC5494 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				5F09EE7118FEAE8400EC5494 /* enter_kuang@2x.png */,
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
 		DA39917818EBB6BA00FAF152 = {
 			isa = PBXGroup;
 			children = (
@@ -474,7 +409,6 @@
 		DA3995D618EBDAA300FAF152 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4E120E9D18F66C9F00C8CAB4 /* MessageChat */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -564,16 +498,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E120EAF18F66CD500C8CAB4 /* BBMessageCellLeftView.xib in Resources */,
-				4E120EB118F66CD500C8CAB4 /* BBMessageCellRightView.xib in Resources */,
 				DAFD84FA1907BCA8003364FD /* location.db in Resources */,
-				5F09EE7218FEAE8400EC5494 /* enter_kuang@2x.png in Resources */,
 				DA72133D199896F800D7D4B8 /* CommonErrorCode.plist in Resources */,
 				DA20BA32193DBE1B00838886 /* channel.dat in Resources */,
 				DA39919118EBB6BA00FAF152 /* InfoPlist.strings in Resources */,
 				DAFAF0221934620E00C18D1D /* terms.html in Resources */,
 				DA39919C18EBB6BA00FAF152 /* Images.xcassets in Resources */,
-				4E120EB318F66CD500C8CAB4 /* BBMessageChat.xib in Resources */,
 				5F022CA8196E91F3009DFB94 /* knowledge_5_1_0.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -596,10 +526,8 @@
 				3BADBBFA19D7FC3A001F091D /* AFHTTPRequestOperationManager.m in Sources */,
 				3BADBC0819D7FC3A001F091D /* UIRefreshControl+AFNetworking.m in Sources */,
 				3BADBC0219D7FC3A001F091D /* AFNetworkActivityIndicatorManager.m in Sources */,
-				4E120EAE18F66CD500C8CAB4 /* BBMessageCellLeftView.m in Sources */,
 				3BADBC0519D7FC3A001F091D /* UIButton+AFNetworking.m in Sources */,
 				3BADBBFB19D7FC3A001F091D /* AFHTTPSessionManager.m in Sources */,
-				4E120EB018F66CD500C8CAB4 /* BBMessageCellRightView.m in Sources */,
 				3BADBC0919D7FC3A001F091D /* UIWebView+AFNetworking.m in Sources */,
 				3BADBC0419D7FC3A001F091D /* UIAlertView+AFNetworking.m in Sources */,
 				3BADBBFC19D7FC3A001F091D /* AFNetworkReachabilityManager.m in Sources */,
@@ -610,8 +538,6 @@
 				3BADBBFD19D7FC3A001F091D /* AFSecurityPolicy.m in Sources */,
 				3BADBBFF19D7FC3A001F091D /* AFURLRequestSerialization.m in Sources */,
 				3BADBC0319D7FC3A001F091D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
-				4E120EAD18F66CD500C8CAB4 /* BBMessageCell.m in Sources */,
-				4E120EB218F66CD500C8CAB4 /* BBMessageChat.m in Sources */,
 				3BADBC0119D7FC3A001F091D /* AFURLSessionManager.m in Sources */,
 				3BADBC0719D7FC3A001F091D /* UIProgressView+AFNetworking.m in Sources */,
 				3BADBC0019D7FC3A001F091D /* AFURLResponseSerialization.m in Sources */,
