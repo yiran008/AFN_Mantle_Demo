@@ -464,7 +464,7 @@
     self.title = string;
     self.navigationItem.title = self.title;
 
-    [self.navigationItem setTitleView:[BBNavigationLabel customNavigationLabel:self.navigationItem.title withWidth:100]];
+    [self.navigationItem setTitleView:[BBNavigationLabel customNavigationLabel:self.navigationItem.title]];
 
 }
 - (void)discuzPhotoPreview:(NSString *)photoUrl

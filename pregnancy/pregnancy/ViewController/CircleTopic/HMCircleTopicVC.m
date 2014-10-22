@@ -21,7 +21,6 @@
 #import "BBHospitalIntroduce.h"
 #import "BBEditPersonalViewController.h"
 #import "HMMoreCircleVC.h"
-#import "BBMessageChat.h"
 
 #define TOP_BTN_START_TAG 100
 
@@ -82,7 +81,6 @@
     [self.navigationItem.titleView addSubview:lineImgView];
     
     self.s_TitleTriAngelBtn = [[UIButton alloc] initWithFrame:CGRectMake(135, 0, 24, 44)];
-    self.s_TitleTriAngelBtn.exclusiveTouch = YES;
     [self.s_TitleTriAngelBtn setImage:[UIImage imageNamed:@"listmenu_down_btn1"] forState:UIControlStateNormal];
     [self.s_TitleTriAngelBtn addTarget:self action:@selector(clickTitleView) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationItem.titleView addSubview:self.s_TitleTriAngelBtn];
@@ -91,7 +89,6 @@
     tapRecognizer.cancelsTouchesInView = YES;
     [self.navigationItem.titleView addGestureRecognizer:tapRecognizer];
     self.navigationItem.titleView.userInteractionEnabled = YES;
-    self.navigationItem.titleView.exclusiveTouch = YES;
 
     // topicStyle
     self.s_TopBgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -44, UI_SCREEN_WIDTH, 44)];
@@ -106,7 +103,6 @@
     UISwipeGestureRecognizer *recognizer= [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(backAction:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [self.m_Table addGestureRecognizer:recognizer];
-    self.m_Table.exclusiveTouch = YES;
     [self freshData];
 }
 
@@ -212,31 +208,8 @@
     }
     else
     {
-        BBAppDelegate *appDelegate = (BBAppDelegate *)[UIApplication sharedApplication].delegate;
-        if(appDelegate.m_bobyBornFinish)
-        {
-            // 跳转到我的圈
-            for (UINavigationController *nav in self.navigationController.viewControllers)
-            {
-                [nav dismissViewControllerAnimated:NO completion:^{
-                    
-                }];
-            }
-            
-            if (!appDelegate.m_mainTabbar)
-            {
-                appDelegate.m_mainTabbar = [[BBMainTabBar alloc]init];
-            }
-            [appDelegate.m_mainTabbar addViewControllers];
-            [appDelegate.m_mainTabbar selectedTabWithIndex:1];
-            appDelegate.window.rootViewController = appDelegate.m_mainTabbar;
-            appDelegate.m_bobyBornFinish = NO;
-        }
-        else
-        {
-            //其它情况返回上一级页面
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        //其它情况返回上一级页面
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -498,11 +471,6 @@
                 self.s_HeaderView.m_TopicArray = dingTopicArray;
                 self.s_HeaderView.m_IsDefaultJoined = self.m_CircleClass.isDefaultJoined ||[[groupInfo stringForKey:@"is_default_joined"] isEqualToString:@"1"];
                 self.s_HeaderView.m_IsHospital = [[groupInfo stringForKey:@"is_hospital"] isEqualToString:@"1"];
-                self.s_HeaderView.m_CircleId = [groupInfo stringForKey:@"group_id"];
-                if (self.s_HeaderView.m_IsHospital)
-                {
-                    self.s_HeaderView.m_HospitalId = [groupInfo stringForKey:@"hospital_id"];
-                }
                 [self.s_HeaderView freshData];
                 self.m_Table.tableHeaderView = self.s_HeaderView;
                 [self addTopicListHeadSegment];
@@ -795,15 +763,11 @@
 -(void)clickedHospitalIntroduction
 {
     [MobClick event:@"discuz_v2" label:@"关于医院"];
-    
-    if (self.s_HeaderView.m_IsHospital)
-    {
-        BBHospitalIntroduce *introduceVC = [[BBHospitalIntroduce alloc]initWithNibName:@"BBHospitalIntroduce" bundle:nil];
-        introduceVC.m_HospitalID = self.s_HeaderView.m_HospitalId;
-        introduceVC.m_CircleID = self.s_HeaderView.m_CircleId;
-        introduceVC.m_RefreshType = EGORefreshType_NONE;
-        [self.navigationController pushViewController:introduceVC animated:YES];
-    }
+    BBHospitalIntroduce *introduceVC = [[BBHospitalIntroduce alloc]initWithNibName:@"BBHospitalIntroduce" bundle:nil];
+    introduceVC.m_HospitalID = self.m_CircleClass.m_HospitalID;
+    introduceVC.m_CircleID = self.m_CircleClass.circleId;
+    introduceVC.m_RefreshType = EGORefreshType_NONE;
+    [self.navigationController pushViewController:introduceVC animated:YES];
 }
 
 #pragma mark -

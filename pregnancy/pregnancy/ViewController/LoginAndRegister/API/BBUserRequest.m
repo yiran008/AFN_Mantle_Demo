@@ -130,11 +130,6 @@
 
 + (ASIFormDataRequest *)modifyUserDueDate:(NSDate *)theDueDate
 {
-    return [self modifyUserDueDate:theDueDate changeToStatus:nil];
-}
-
-+ (ASIFormDataRequest *)modifyUserDueDate:(NSDate *)theDueDate changeToStatus:(NSString*)babyStatus
-{
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/muser/set_user_info",BABYTREE_URL_SERVER]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[BBUser getLoginString] forKey:LOGIN_STRING_KEY];
@@ -142,10 +137,6 @@
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
     [dateFormatter setDateFormat:@"yyyy'-'M'-'d"];
     [request setPostValue:[dateFormatter stringFromDate:theDueDate] forKey:@"baby_birthday"];
-    if ([babyStatus isNotEmpty])
-    {
-        [request setPostValue:babyStatus forKey:@"baby_status"];
-    }
     
     ASI_DEFAULT_INFO_POST
     

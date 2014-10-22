@@ -62,11 +62,6 @@
     [self addProgress];
     self.dueDateSetType = 0;
     [self resetViewWithType:0];
-    
-    self.dueDateSetTypeButton.exclusiveTouch = YES;
-    self.dueDateKnowledgeButton.exclusiveTouch = YES;
-    self.showPickerButton.exclusiveTouch = YES;
-    self.inputCycleButton.exclusiveTouch = YES;
 }
 
 - (void)ConfigNavBar {
@@ -391,8 +386,7 @@
     }
     
     [self.dueDateRequest clearDelegatesAndCancel];
-    NSString *babyStatus = [BBPregnancyInfo clientStatusOfUserRoleState:BBUserRoleStatePregnant];
-    self.dueDateRequest = [BBUserRequest modifyUserDueDate:newDate changeToStatus:babyStatus];
+    self.dueDateRequest = [BBUserRequest modifyUserDueDate:newDate];
     [self.dueDateRequest setDidFinishSelector:@selector(synchronizeDueDateFinish:)];
     [self.dueDateRequest setDidFailSelector:@selector(synchronizeDueDateFail:)];
     [self.dueDateRequest setDelegate:self];

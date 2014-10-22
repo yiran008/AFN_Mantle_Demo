@@ -263,7 +263,6 @@ static const CGFloat AlertViewLineLayerWidth = 0.5;
     [self.backgroundView setUserInteractionEnabled:YES];
     [self.backgroundView setMultipleTouchEnabled:NO];
     [self.backgroundView addGestureRecognizer:self.tap];
-    self.backgroundView.exclusiveTouch = YES;
 }
 
 - (void)resizeViews

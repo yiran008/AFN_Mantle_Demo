@@ -91,7 +91,6 @@
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
     [panRecognizer setDelegate:self];
     [self.view addGestureRecognizer:panRecognizer];
-    self.view.exclusiveTouch = YES;
     
     //iphone5适配
     IPHONE5_ADAPTATION

@@ -854,7 +854,7 @@
                 [self.m_delegate modifyPresonalCenter];
             }
             
-//            [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
         }
     } else if (kCheckUpdateTag == alertView.tag) {
         if (1 == buttonIndex) {

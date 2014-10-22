@@ -224,25 +224,25 @@ static TestHelper *sharedInstance = nil;
 #ifdef DEBUG
     //初始化配置
     NSString *test_server_id = [[NSUserDefaults standardUserDefaults]objectForKey:DEBUG_TEST_SERVER_KEY];
-    if (test_server_id == nil)
+    if (test_server_id == nil || [test_server_id length]==0)
     {
         [[NSUserDefaults standardUserDefaults]setObject:TEST_INIT forKey:DEBUG_TEST_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults]synchronize];
     }
     NSString *upload_server_id = [[NSUserDefaults standardUserDefaults]objectForKey:DEBUG_UPLOAD_SERVER_KEY];
-    if (upload_server_id == nil)
+    if (upload_server_id == nil || [upload_server_id length]==0)
     {
         [[NSUserDefaults standardUserDefaults]setObject:UPLOAD_INIT forKey:DEBUG_UPLOAD_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults]synchronize];
     }
     NSString *mall_server_id = [[NSUserDefaults standardUserDefaults]objectForKey:DEBUG_MALL_SERVER_KEY];
-    if (mall_server_id == nil)
+    if (mall_server_id == nil || [mall_server_id length]==0)
     {
         [[NSUserDefaults standardUserDefaults]setObject:MALL_INIT forKey:DEBUG_MALL_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults]synchronize];
     }
     NSString *dev_server_id = [[NSUserDefaults standardUserDefaults]objectForKey:DEBUG_DEV_SERVER_KEY];
-    if (dev_server_id == nil)
+    if (dev_server_id == nil || [dev_server_id length]==0)
     {
         [[NSUserDefaults standardUserDefaults]setObject:DEV_INIT forKey:DEBUG_DEV_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults]synchronize];

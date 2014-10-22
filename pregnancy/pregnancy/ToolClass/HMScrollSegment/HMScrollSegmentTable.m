@@ -168,11 +168,6 @@
 // TableView开始滚动
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    // 退出登录的时候, 防止圈子页面上的 标题长度越界, 并且保持scrollView原来的位置
-    if (s_TableViewCurrentIndex >= self.m_TitleArray.count) {
-        s_TableViewCurrentIndex = 0;
-    }
-    
     NSInteger fromIndex = s_TableViewCurrentIndex;
 
     CGFloat scaleOffsetX = (scrollView.contentOffset.x - s_TableViewCurrentIndex * self.m_TableBackScrollView.width) / self.m_ScrollSegment.width;
@@ -194,31 +189,27 @@
 // 点击Segment上的Button之后调用的方法
 - (void)scrollSegment:(HMScrollSegment *)scrollSegment selectedButtonAtIndex:(NSUInteger)index
 {
-    if (index < self.m_TitleArray.count) {
-        NSString *label = self.m_TitleArray[index];
-        
-        if ([label isEqualToString:@"我的圈"])
-        {
-            [MobClick event:@"discuz_v2" label:@"我的圈页pv"];//tag1
-        }
-        else
-        {
-            [MobClick event:@"discuz_v2" label:[NSString stringWithFormat:@"更多圈-二级标签点击（%@）",label]];
-        }
+    NSString *label = self.m_TitleArray[index];
+    
+    if ([label isEqualToString:@"我的圈"])
+    {
+        [MobClick event:@"discuz_v2" label:@"我的圈页pv"];//tag1
+    }
+    else
+    {
+        [MobClick event:@"discuz_v2" label:[NSString stringWithFormat:@"更多圈-二级标签点击（%@）",label]];
+    }
+
+    [self.m_TableBackScrollView setContentOffset:CGPointMake(index * self.m_TableBackScrollView.width,0) animated:YES];
+
+    HMMoreCircleTableView *tableView = self.m_TableArray[index];
+    
+    if (![tableView.m_Data isNotEmpty])
+    {
+        [tableView rollFreshData];
     }
     
-    if (index < self.m_TableArray.count) {
-        
-        [self.m_TableBackScrollView setContentOffset:CGPointMake(index * self.m_TableBackScrollView.width,0) animated:YES];
-        HMMoreCircleTableView *tableView = self.m_TableArray[index];
-        
-        if (![tableView.m_Data isNotEmpty])
-        {
-            [tableView rollFreshData];
-        }
-        
-        s_TableViewCurrentIndex = index;
-    }
+    s_TableViewCurrentIndex = index;
     
 }
 

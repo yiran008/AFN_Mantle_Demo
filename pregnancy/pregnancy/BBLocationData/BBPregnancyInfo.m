@@ -400,24 +400,17 @@ static NSDateFormatter *sharedDateFormatter = nil;
 
 + (NSString *)pregnanyClientAndStatus
 {
-    return [self clientStatusOfUserRoleState:[BBUser getNewUserRoleState]];
-}
-
-+ (NSString*)clientStatusOfUserRoleState:(BBUserRoleState)userRoleState
-{
-    if(userRoleState == BBUserRoleStateNone){
+    if([BBUser getNewUserRoleState] ==BBUserRoleStateNone){
         return @"0";
     }
     int type = ([BBUser isCurrentUserBabyFather]?1:0)*3;
-    if(userRoleState == BBUserRoleStatePrepare)
+    if([BBUser getNewUserRoleState] == BBUserRoleStatePrepare)
     {
         type++;
-    }
-    else if(userRoleState == BBUserRoleStatePregnant)
+    }else if([BBUser getNewUserRoleState] == BBUserRoleStatePregnant)
     {
         type = type +2;
-    }
-    else if(userRoleState == BBUserRoleStateHasBaby)
+    }else
     {
         type = type +3;
     }

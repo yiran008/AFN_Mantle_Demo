@@ -132,14 +132,14 @@ static NSString *topListIdentifer = @"BBTopListMemberCell";
                                                               {
                                                                   return;
                                                               }
-                                                              [strongself.m_CollectionTable reloadData];
+                                                              [self.m_CollectionTable reloadData];
                                                               
                                                               [strongself.segmented setNoDataViewStatusInfoWithArrayIndex:strongself.m_CircleMembertype withNoDataType:strongself.m_NoDataView.m_Type withHidden:strongself.m_NoDataView.hidden withText:strongself.m_NoDataView.m_PromptText];
                                                               
                                                               if (segmentIndex == 0)
                                                               {
                                                                   strongself.m_CircleMembertype = BBTopMember;
-                                                                  if ([strongself.s_TopArray count]>0)
+                                                                  if ([self.s_TopArray count]>0)
                                                                   {
                                                                       [strongself reloadCollectionTable];
 
@@ -154,12 +154,12 @@ static NSString *topListIdentifer = @"BBTopListMemberCell";
                                                                   strongself.m_CircleMembertype = BBDistancemember;
                                                                   if (![strongself isGetUserDistanceInfomation])
                                                                   {
-                                                                      [strongself.m_CollectionTable reloadData];
-                                                                      strongself.m_NoDataView.hidden = YES;
+                                                                      [strongself reloadCollectionTable];
+                                                                      self.m_NoDataView.hidden = YES;
                                                                       return;
                                                                   }
                                                                   
-                                                                  if ([strongself.s_DisArray count]>0)
+                                                                  if ([self.s_DisArray count]>0)
                                                                   {
                                                                       [strongself reloadCollectionTable];
                                                                   }
@@ -172,7 +172,7 @@ static NSString *topListIdentifer = @"BBTopListMemberCell";
                                                               else if (segmentIndex == 2)
                                                               {
                                                                   strongself.m_CircleMembertype = BBAgeMember;
-                                                                  if ([strongself.s_AgeArray count]>0)
+                                                                  if ([self.s_AgeArray count]>0)
                                                                   {
                                                                       [strongself reloadCollectionTable];
                                                                   }
@@ -278,10 +278,6 @@ static NSString *topListIdentifer = @"BBTopListMemberCell";
         {
             if (![self isGetUserDistanceInfomation])
             {
-                [self cancelRefreshView];
-                [self.s_MBProgress hide:YES];
-                [self.s_DisArray removeAllObjects];
-                [self.m_CollectionTable reloadData];
                 return;
             }
             [self.s_DisArray removeAllObjects];

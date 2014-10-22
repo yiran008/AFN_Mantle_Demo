@@ -26,15 +26,13 @@
 + (NSString*)userLocationLongitude
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *longitude = [defaults stringForKey:USER_LOCATION_GPS_LON];
-    return longitude?longitude:@"";
+    return [defaults objectForKey:USER_LOCATION_GPS_LON];
 }
 
 + (NSString*)userLocationLatitude
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *latitude = [defaults stringForKey:USER_LOCATION_GPS_LAT];
-    return latitude?latitude:@"";
+    return [defaults objectForKey:USER_LOCATION_GPS_LAT];
 }
 
 @end

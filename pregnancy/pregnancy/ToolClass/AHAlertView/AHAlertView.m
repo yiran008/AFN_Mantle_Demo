@@ -270,7 +270,7 @@ fromTextAttributes:(NSDictionary *)attributes
 // Internal utility to initialize a button while also wiring up the block associated with its touch action
 - (UIButton *)buttonWithTitle:(NSString *)aTitle associatedBlock:(AHAlertViewButtonBlock)block {
 	UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
-	button.exclusiveTouch = YES;
+	
 	[button setTitle:aTitle forState:UIControlStateNormal];
 	[button addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
 	objc_setAssociatedObject(button, AHAlertViewButtonBlockKey, block, OBJC_ASSOCIATION_RETAIN);
@@ -283,7 +283,6 @@ fromTextAttributes:(NSDictionary *)attributes
 		self.otherButtons = [NSMutableArray array];
 	
 	UIButton *otherButton = [self buttonWithTitle:title associatedBlock:block];
-    otherButton.exclusiveTouch = YES;
 	[self.otherButtons addObject:otherButton];
 	[self addSubview:otherButton];
 }

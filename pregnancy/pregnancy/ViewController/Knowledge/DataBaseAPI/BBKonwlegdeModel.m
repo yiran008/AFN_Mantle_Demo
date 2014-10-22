@@ -9,7 +9,7 @@
 #import "BBKonwlegdeModel.h"
 
 @implementation BBKonwlegdeModel
-@synthesize description;
+
 -(id)initWithData:(NSDictionary *)dic
 {
     self = [super init];

@@ -109,7 +109,6 @@
     UITapGestureRecognizer *tapGr = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]autorelease];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
-    self.view.exclusiveTouch = YES;
     [self.firstView addSubview:self.rollView];
     [self.firstView setHidden:YES];
     
@@ -127,11 +126,6 @@
         [self.disclaimerWebView setHeight:self.disclaimerWebView.frame.size.height + 88];
         [self.disclaimerView setHeight:self.disclaimerView.frame.size.height + 88];
     }
-    
-    self.agreeButton.exclusiveTouch = YES;
-    self.fromAddressButton.exclusiveTouch = YES;
-    self.toAddressButton.exclusiveTouch = YES;
-    
 }
 
 

@@ -19,7 +19,5 @@
 @property (nonatomic, strong) IBOutlet UILabel *reminderLabel;
 @property (nonatomic, strong) IBOutlet UIButton *buyPregnancyBoxButton;
 @property (nonatomic, strong) IBOutlet UIButton *scanMarkButton;
-// 两个按钮的背景View,
-@property (nonatomic, strong) IBOutlet UIView *buyPregnancyBoxBgView;
-@property (nonatomic, strong) IBOutlet UIView *scanMarkBgView;
+
 @end

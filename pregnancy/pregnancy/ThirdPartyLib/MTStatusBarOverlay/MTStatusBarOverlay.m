@@ -362,7 +362,6 @@ kDetailViewWidth, kHistoryTableRowHeight*kMaxHistoryTableRowCount + kStatusBarHe
 		//downGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
         
 		[backgroundView_ addGestureRecognizer:tapGestureRecognizer];
-        backgroundView_.exclusiveTouch = YES;
 		//[detailView_ addGestureRecognizer:upGestureRecognizer];
 		//[self addGestureRecognizer:downGestureRecognizer];
         

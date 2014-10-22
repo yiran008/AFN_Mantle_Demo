@@ -32,7 +32,6 @@
         lpress.allowableMovement = 5;
         lpress.delegate = self;
         [self addGestureRecognizer:lpress];
-        self.exclusiveTouch = YES;
         [lpress ah_release];
     }
     

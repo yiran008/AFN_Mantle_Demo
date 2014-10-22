@@ -201,7 +201,6 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doneResign:)];
     tapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer: tapGestureRecognizer];
-    self.view.exclusiveTouch = YES;
     return YES;
 }
 

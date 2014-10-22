@@ -792,7 +792,6 @@
         [tabView removeGestureRecognizer:gestrue];
     }
     [tabView addGestureRecognizer:tapGestureRecognizer];
-    tabView.exclusiveTouch = YES;
     
     if (index == _activeTabIndex && !tabView.isSelected) {
         tabView.selected = YES;

@@ -37,7 +37,7 @@
     [self.m_AvtarImage setImageWithURL:[NSURL URLWithString:memberObj.m_UserAvatar] placeholderImage:[UIImage imageNamed:@"personal_default_avatar"]];
     if([memberObj.m_UserName isNotEmpty])
     {
-        [self setCellViewFrame:self.m_NameLabel withLabelText:memberObj.m_UserName withMAXWidth:160 withFont:[UIFont systemFontOfSize:14.0]];
+        [self setCellViewFrame:self.m_NameLabel withLabelText:memberObj.m_UserName withMAXWidth:200 withFont:[UIFont systemFontOfSize:14.0]];
         self.m_NameLabel.text = memberObj.m_UserName;
     }
     else
@@ -74,7 +74,7 @@
     if ([memberObj.m_UserAdress isNotEmpty])
     {
         
-        [self setCellViewFrame:self.m_AdressLabel withLabelText:memberObj.m_UserAdress withMAXWidth:160 withFont:[UIFont systemFontOfSize:12.0]];
+        [self setCellViewFrame:self.m_AdressLabel withLabelText:memberObj.m_UserAdress withMAXWidth:200 withFont:[UIFont systemFontOfSize:12.0]];
         self.m_AdressLabel.text = memberObj.m_UserAdress;
         self.m_PregnancyLabel.left = 76 + self.m_AdressLabel.width +12;
     }

@@ -48,9 +48,7 @@
         self.navigationItem.title = @"分享到QQ空间";
     }
     [shareTitleLabel setText:self.navigationItem.title];
-
-    NSString *str =  ([BBUser getNewUserRoleState] == BBUserRoleStateHasBaby) ?  @"weibo_yuer" : @"weibo_yunqi";
-    [self.bg setImage:[UIImage imageNamed:IPHONE5_IMAGE_NAME(str)]];
+    [self.bg setImage:[UIImage imageNamed:IPHONE5_IMAGE_NAME(@"weibo_yunqi")]];
     [self.navigationItem setTitleView:[BBNavigationLabel customNavigationLabel:self.navigationItem.title]];
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager startUpdatingLocation];

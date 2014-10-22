@@ -145,8 +145,7 @@
     //    NSLog(@"%d", toIndex);
     //    NSLog(@"%f", relativeOffsetX);
     
-    if (toIndex != fromIndex && toIndex >=0 &&
-        fromIndex <self.s_BtnArray.count && toIndex < self.s_BtnArray.count)
+    if (toIndex != fromIndex && toIndex >=0 && toIndex < self.s_BtnArray.count)
     {
         UIButton *currentBtn = self.s_BtnArray[fromIndex];
         UIButton *toBtn = self.s_BtnArray[toIndex];
@@ -182,10 +181,8 @@
 // 点击某个Btn
 - (void)selectBtn:(UIButton *)btn;
 {
-    if (s_CurrentIndex < self.s_BtnArray.count) {
-        UIButton *currentBtn = self.s_BtnArray[s_CurrentIndex];
-        currentBtn.selected = NO;
-    }
+    UIButton *currentBtn = self.s_BtnArray[s_CurrentIndex];
+    currentBtn.selected = NO;
 
     btn.userInteractionEnabled = NO;
     btn.selected = YES;

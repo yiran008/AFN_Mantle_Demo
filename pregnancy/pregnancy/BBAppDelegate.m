@@ -371,7 +371,7 @@
             {
                 [NoticeUtil cancelCustomLocationNoti:@"BBCutParentRemindNotice"];
                 NSString *preStr = @"恭喜您的宝宝已经足月了，宝宝出生后建议您及时修改宝宝生日，获得更多育儿经验";
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:preStr   message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"了解更多", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:preStr   message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 [alertView setTag:KBBCutParentLocationTag];
                 [alertView show];
             }
@@ -414,7 +414,7 @@
             {
                 [NoticeUtil cancelCustomLocationNoti:@"BBCutParentRemindNotice"];
                 NSString *preStr = @"恭喜您的宝宝已经足月了，宝宝出生后建议您及时修改宝宝生日，获得更多育儿经验";
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:preStr   message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"了解更多", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:preStr   message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 [alertView setTag:KBBCutParentLocationTag];
                 [alertView show];
             }
@@ -599,7 +599,7 @@
             {
                 [NoticeUtil cancelCustomLocationNoti:@"BBCutParentRemindNotice"];
                 NSString *preStr = @"恭喜您的宝宝已经足月了，宝宝出生后建议您及时修改宝宝生日，获得更多育儿经验";
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:preStr   message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"了解更多", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:preStr   message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 [alertView setTag:KBBCutParentLocationTag];
                 [alertView show];
             }
@@ -856,6 +856,12 @@
         [self.adverteDomobRequest startAsynchronous];
     }
     [self pregnancyCookieInfo];
+    if (addPlus > 0)
+    {
+        // 显示孕气动画
+        [self showAddPregnancy:addPlus];
+        addPlus = 0;
+    }
     application.applicationIconBadgeNumber = 0;
     //更新知识相关的数据库
     //[BBKnowledgeCreateTool createKnowledgeDB];
@@ -1107,12 +1113,6 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(),^{
         [UMFeedback checkWithAppkey:Appkey];
-        if (addPlus > 0)
-        {
-            // 显示孕气动画
-            [self showAddPregnancy:addPlus];
-            addPlus = 0;
-        }
     });
     
 }
@@ -2046,8 +2046,7 @@
         NSString *dateStr = @"2100-01-01 00:00:00";
         NSDate *prepareDate = [formatter dateFromString:dateStr];
         [self.s_PrepareRequest clearDelegatesAndCancel];
-        NSString *babyStatus = [BBPregnancyInfo clientStatusOfUserRoleState:BBUserRoleStatePrepare];
-        self.s_PrepareRequest = [BBUserRequest modifyUserDueDate:prepareDate changeToStatus:babyStatus];
+        self.s_PrepareRequest = [BBUserRequest modifyUserDueDate:prepareDate];
         [self.s_PrepareRequest setDidFinishSelector:@selector(synchronizePrepareDueDateFinish:)];
         [self.s_PrepareRequest setDidFailSelector:@selector(synchronizePrepareDueDateFail:)];
         [self.s_PrepareRequest setDelegate:self];
@@ -2137,7 +2136,6 @@
     {
         UIButton *guideButton = [UIButton buttonWithType:UIButtonTypeCustom];
         guideButton.tag = 10011;
-        guideButton.exclusiveTouch = YES;
         [guideButton setFrame:CGRectMake(0, 0, 320, (480+88))];
         if([guideKey isEqualToString:GUIDE_SHOW_HOME_PAGE] && DEVICE_HEIGHT < 568)
         {

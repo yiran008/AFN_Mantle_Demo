@@ -75,7 +75,6 @@ withBBListViewData:(id)bBListViewData
         if (_refresh_pull_up_header_view == nil) {
             EGORefreshPullUpTableHeaderView *pullUpView = [[EGORefreshPullUpTableHeaderView alloc] initWithFrame: CGRectMake(0.0, self.frame.size.height+2000, self.frame.size.width, self.frame.size.height)];
             pullUpView.delegate = self;
-            pullUpView.backgroundColor = [UIColor clearColor];
             [bbTableView addSubview:pullUpView];
             _refresh_pull_up_header_view = pullUpView;
             [pullUpView release];

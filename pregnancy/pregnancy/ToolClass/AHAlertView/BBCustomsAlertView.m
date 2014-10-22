@@ -54,7 +54,6 @@
             for(int i=0;i<titles.count;i++)
             {
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-                button.exclusiveTouch = YES;
                 button.tag = 10+i;
                 if(titles.count == 1)
                 {

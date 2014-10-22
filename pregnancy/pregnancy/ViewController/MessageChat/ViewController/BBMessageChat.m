@@ -153,12 +153,9 @@
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [self.chatTableView addGestureRecognizer:recognizer];
     [recognizer release];
-    self.chatTableView.exclusiveTouch = YES;
     
     self.touchRecognizer = [[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(keyboardDismiss:)] autorelease];
     [touchRecognizer setNumberOfTapsRequired:1];
-    
-    self.deleteBtn.exclusiveTouch = YES;
 }
 
 - (void)addRightBarButton

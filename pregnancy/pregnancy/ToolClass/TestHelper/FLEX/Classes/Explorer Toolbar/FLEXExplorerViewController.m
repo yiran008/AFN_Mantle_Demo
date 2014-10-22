@@ -105,7 +105,6 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     // View selection
     UITapGestureRecognizer *selectionTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectionTap:)];
     [self.view addGestureRecognizer:selectionTapGR];
-    self.view.exclusiveTouch = YES;
     
     // View moving
     self.movePanGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleMovePan:)];
@@ -500,7 +499,6 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     // Pan gesture for dragging.
     UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleToolbarPanGesture:)];
     [self.explorerToolbar.dragHandle addGestureRecognizer:panGR];
-    self.explorerToolbar.dragHandle.exclusiveTouch = YES;
     
     // Tap gesture for hinting.
     UITapGestureRecognizer *hintTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleToolbarHintTapGesture:)];
@@ -509,7 +507,6 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     // Tap gesture for showing additional details
     self.detailsTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleToolbarDetailsTapGesture:)];
     [self.explorerToolbar.selectedViewDescriptionContainer addGestureRecognizer:self.detailsTapGR];
-    self.explorerToolbar.selectedViewDescriptionContainer.exclusiveTouch = YES;
 }
 
 - (void)handleToolbarPanGesture:(UIPanGestureRecognizer *)panGR

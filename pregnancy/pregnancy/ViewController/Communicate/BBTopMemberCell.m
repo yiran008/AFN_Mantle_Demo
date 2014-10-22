@@ -24,8 +24,7 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        self.m_RuleButton.exclusiveTouch = YES;
-
+        
     }
     return self;
 }

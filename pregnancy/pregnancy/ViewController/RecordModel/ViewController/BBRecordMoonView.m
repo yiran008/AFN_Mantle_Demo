@@ -12,6 +12,15 @@
 #import "BBRecordMoonViewCell.h"
 #import "BBPublishRecord.h"
 
+#import "BBRecordClass.h"
+#import "BBRecordAFRequest.h"
+
+@interface BBRecordMoonView ()
+
+@property (nonatomic,strong)NSDictionary *jsonData;
+
+@end
+
 @implementation BBRecordMoonView
 
 -(void)dealloc
@@ -49,7 +58,6 @@
         if (_refresh_pull_up_header_view == nil) {
             EGORefreshPullUpTableHeaderView *pullUpView = [[EGORefreshPullUpTableHeaderView alloc] initWithFrame: CGRectMake(0.0, self.frame.size.height+2000, self.frame.size.width, self.frame.size.height)];
             pullUpView.delegate = self;
-            pullUpView.backgroundColor = [UIColor clearColor];
             [_tableView addSubview:pullUpView];
             _refresh_pull_up_header_view = pullUpView;
             [pullUpView release];
@@ -137,7 +145,11 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
     }
-    [cell setCellWithData:[self.dataArray objectAtIndex:indexPath.row]];
+    if (indexPath.row < self.dataArray.count)
+    {
+        [cell setCellWithData:[self.dataArray objectAtIndex:indexPath.row]];
+    }
+    
     
     return cell;
 }
@@ -146,20 +158,20 @@
 
 - (void)tableView:(UITableView *)tableViews didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableDictionary *data = [self.dataArray objectAtIndex:indexPath.row];
+    BBRecordClass *dataClass = [self.dataArray objectAtIndex:indexPath.row];
     if (self.userEncodeId)
     {
-        if ([data stringForKey:@"date"] == nil) {
+        if (![dataClass.date isNotEmpty]) {
             BBRecordDetail *recordDetail = [[[BBRecordDetail alloc]initWithNibName:@"BBRecordDetail" bundle:nil]autorelease];
-            recordDetail.recordDetailDic = data;
+            recordDetail.recordDetailClass = dataClass;
             recordDetail.isSquare = YES;
             [self.viewController.navigationController pushViewController:recordDetail animated:YES];
         }
         
     }else{
-        if ([data stringForKey:@"date"] == nil) {
+        if (![dataClass.date isNotEmpty]) {
             BBRecordDetail *recordDetail = [[[BBRecordDetail alloc]initWithNibName:@"BBRecordDetail" bundle:nil]autorelease];
-            recordDetail.recordDetailDic = data;
+            recordDetail.recordDetailClass = dataClass;
             [self.viewController.navigationController pushViewController:recordDetail animated:YES];
         }
     }
@@ -251,88 +263,130 @@
         [self performSelector:@selector(doneLoadingPullUpTableViewData) withObject:nil afterDelay:0.1 inModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
     }
     self.lastTimeTs =[NSString stringWithFormat:@"%d",(int)[[NSDate date]timeIntervalSince1970]];
-    [self.requests clearDelegatesAndCancel];
-    if (self.userEncodeId) {
-        self.requests = [BBRecordRequest recordMoon:self.lastTimeTs withUserEncodeId:self.userEncodeId];
-    }else{
-        self.requests = [BBRecordRequest recordMoon:self.lastTimeTs];
+    if (self.userEncodeId)
+    {
+        [BBRecordAFRequest recordMoonWithTime:self.lastTimeTs withUserEncodeId:self.userEncodeId theBlock:^(id jsonData, NSError *error) {
+            if (!error)
+            {
+                self.jsonData = (NSDictionary *)jsonData;
+                [self buildDataArrayWithModelFromObject:jsonData];
+                if ([self.dataArray isNotEmpty])
+                {
+                    [self reloadDataFinished];
+                }
+            }
+            else
+            {
+                [self reloadDataFail];
+            }
+        }];
     }
-    [self.requests setDelegate:self];
-    [self.requests setDidFinishSelector:@selector(reloadDataFinished:)];
-    [self.requests setDidFailSelector:@selector(reloadDataFail:)];
-    [self.requests startAsynchronous];
-
+    else
+    {
+        [BBRecordAFRequest recordMoonWithTime:self.lastTimeTs theBlock:^(id jsonData, NSError *error) {
+            if (!error)
+            {
+                self.jsonData = (NSDictionary *)jsonData;
+                [self buildDataArrayWithModelFromObject:jsonData];
+                if ([self.dataArray isNotEmpty])
+                {
+                    [self reloadDataFinished];
+                }
+            }
+            else
+            {
+                [self reloadDataFail];
+            }
+        }];
+    }
 }
-- (void)reloadDataFinished:(ASIHTTPRequest *)request
+
+- (void)buildDataArrayWithModelFromObject:(id)object
+{
+    if(self.dataArray == nil)
+    {
+        self.dataArray = [[[NSMutableArray alloc] init] autorelease];
+    }
+    
+    if(_reloading==YES)
+    {
+        [self.dataArray removeAllObjects];
+    }
+    
+    NSDictionary *theDic = (NSDictionary *)object;
+    NSMutableArray *list = [NSMutableArray arrayWithArray:[[theDic dictionaryForKey:@"data"]  arrayForKey:@"list"]];
+    NSMutableArray *tmpArr = [[[NSMutableArray alloc]initWithCapacity:0] autorelease];
+    if([list count]>0)
+    {
+        tmpArr = [BBRecordMoonView filterObjectByAddAraay:list withOriginArray:nil];
+    }
+    for (NSDictionary *subDic in tmpArr)
+    {
+        BBRecordClass *theRecordClass = [[[BBRecordClass alloc]initWithJsonData:subDic] autorelease];
+        [self.dataArray addObject:theRecordClass];
+    }
+}
+
+- (void)reloadDataFinished
 {
     self.m_NoDataView.hidden = YES;
     
-    NSString *responseString = [request responseString];
-    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
-    NSError *error = nil;
-    NSDictionary *responseDic = [parser objectWithString:responseString error:&error];
-    NSString *status = [responseDic stringForKey:@"status"];
-    if(error == nil){
-        if ([status isEqualToString:@"success"]) {
-            NSString *time = [[responseDic  dictionaryForKey:@"data"]stringForKey:@"last_ts"];
-            if (time != nil) {
-                self.lastTimeTs = time;
-            }
-            self.dataArray = [BBRecordMoonView filterObjectByAddAraay:[NSMutableArray arrayWithArray:[[responseDic dictionaryForKey:@"data"]  arrayForKey:@"list"]] withOriginArray:nil];
-            if([self.dataArray count]>0){
-                [self.tableView reloadData];
-                CGRect tableRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count]-1 inSection:0]];
-                CGFloat celly = MAX(self.frame.size.height, tableRect.origin.y + tableRect.size.height);
-                [_refresh_pull_up_header_view setFrame:CGRectMake(0, celly, self.frame.size.width, self.frame.size.height)];
-                
-                [self.tableView setContentOffset:CGPointMake(0,0)];
-            }else{
-                [_refresh_pull_up_header_view setFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height)];
-                [self.tableView reloadData];
-                if ([self.userEncodeId isNotEmpty] && ![self.userEncodeId isEqual:[BBUser getEncId]])
+    NSString *status = [self.jsonData stringForKey:@"status"];
+  
+    if ([status isEqualToString:@"success"]) {
+        NSString *time = [[self.jsonData  dictionaryForKey:@"data"]stringForKey:@"last_ts"];
+        if (time != nil) {
+            self.lastTimeTs = time;
+        }
+
+        if([self.dataArray count]>0){
+            [self.tableView reloadData];
+            CGRect tableRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count]-1 inSection:0]];
+            CGFloat celly = MAX(self.frame.size.height, tableRect.origin.y + tableRect.size.height);
+            [_refresh_pull_up_header_view setFrame:CGRectMake(0, celly, self.frame.size.width, self.frame.size.height)];
+            
+            [self.tableView setContentOffset:CGPointMake(0,0)];
+        }else{
+            [_refresh_pull_up_header_view setFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height)];
+            [self.tableView reloadData];
+            if (![self.userEncodeId isEqual:[BBUser getEncId]])
+            {
+               // is_publish =1：心情记录隐私   =0：没有心情记录
+                NSString *isPublish = [[self.jsonData dictionaryForKey:@"data"] stringForKey:@"is_publish"];
+                if([isPublish isEqualToString:@"0"])
                 {
-                   // is_publish =1：心情记录隐私   =0：没有心情记录
-                    NSString *isPublish = [[responseDic dictionaryForKey:@"data"] stringForKey:@"is_publish"];
-                    if([isPublish isEqualToString:@"0"])
-                    {
-                        [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"这里还什么都没有"];
-                    }
-                    else
-                    {
-                        [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"她的心情记录没有公开哦~"];
-                    }
+                    [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"这里还什么都没有"];
+                }
+                else
+                {
+                    [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"她的心情记录没有公开哦~"];
                 }
             }
-            if(!self.hud.isHidden){
-                self.hud.labelText = @"加载完成";
-                [self.hud hide:YES afterDelay:0.2];
-            }
-            
-        }else{
-            if(!self.hud.isHidden){
-                [self.hud hide:YES];
-            }
-            [self showDataErrorWithType:HMNODATAVIEW_DATAERROR withAlertTitle:@"提示！" withAlertMessage:[[responseDic dictionaryForKey:@"data"] stringForKey:@"message"]];
         }
+        if(!self.hud.isHidden){
+            self.hud.labelText = @"加载完成";
+            [self.hud hide:YES afterDelay:0.2];
+        }
+        
     }else{
         if(!self.hud.isHidden){
             [self.hud hide:YES];
         }
-        [self showDataErrorWithType:HMNODATAVIEW_DATAERROR withAlertTitle:@"提示！" withAlertMessage:@"加载数据失败"];
+        [self showDataErrorWithType:HMNODATAVIEW_DATAERROR withAlertTitle:@"提示！" withAlertMessage:[[self.jsonData dictionaryForKey:@"data"] stringForKey:@"message"]];
     }
+   
     //加载完成去掉加载框
     if(_reloading==YES){
         [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:EGOHEAD_REFRESH_DELAY inModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
     }
 }
-- (void)reloadDataFail:(ASIHTTPRequest *)request
+- (void)reloadDataFail
 {
     self.m_NoDataView.hidden = YES;
     if(!self.hud.isHidden){
         [self.hud hide:YES];
     }
-    NSError *error = [request error];
-    [self showDataErrorWithType:HMNODATAVIEW_NETERROR withAlertTitle:@"亲，您的网络不给力啊" withAlertMessage:[error localizedFailureReason]];
+    [self showDataErrorWithType:HMNODATAVIEW_NETERROR withAlertTitle:@"亲，您的网络不给力啊" withAlertMessage:[[self.jsonData dictionaryForKey:@"data"] stringForKey:@"message"]];
 
     //加载完成去掉加载框
     if(_pull_up_reloading==YES){
@@ -349,80 +403,97 @@
     if(_reloading==YES){
         [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:EGOHEAD_REFRESH_DELAY inModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
     }
-    [self.requests clearDelegatesAndCancel];
-    if (self.userEncodeId) {
-        self.requests = [BBRecordRequest recordMoon:self.lastTimeTs withUserEncodeId:self.userEncodeId];
-    }else{
-        self.requests = [BBRecordRequest recordMoon:self.lastTimeTs];
+    if (self.userEncodeId)
+    {
+        [BBRecordAFRequest recordMoonWithTime:self.lastTimeTs withUserEncodeId:self.userEncodeId theBlock:^(id jsonData, NSError *error) {
+            if (!error)
+            {
+                self.jsonData = (NSDictionary *)jsonData;
+                [self buildDataArrayWithModelFromObject:jsonData];
+                if ([self.dataArray isNotEmpty])
+                {
+                    [self nextLoadDataFinished];
+                }
+            }
+            else
+            {
+                [self nextLoadDataFail];
+            }
+        }];
     }
-    [self.requests setDelegate:self];
-    [self.requests setDidFinishSelector:@selector(nextLoadDataFinished:)];
-    [self.requests setDidFailSelector:@selector(nextLoadDataFail:)];
-    [self.requests startAsynchronous];
-    
+    else
+    {
+        [BBRecordAFRequest recordMoonWithTime:self.lastTimeTs theBlock:^(id jsonData, NSError *error) {
+            if (!error)
+            {
+                self.jsonData = (NSDictionary *)jsonData;
+                [self buildDataArrayWithModelFromObject:jsonData];
+                if ([self.dataArray isNotEmpty])
+                {
+                    [self nextLoadDataFinished];
+                }
+            }
+            else
+            {
+                [self nextLoadDataFail];
+            }
+        }];
+    }
 }
-- (void)nextLoadDataFinished:(ASIHTTPRequest *)request
+
+- (void)nextLoadDataFinished
 {
     self.m_NoDataView.hidden = YES;
     
-    NSString *responseString = [request responseString];
-    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
-    NSError *error = nil;
-    NSDictionary *responseDic = [parser objectWithString:responseString error:&error];
-    NSString *status = [responseDic stringForKey:@"status"];
-    if(error == nil){    
-        if ([status isEqualToString:@"success"]) {
-            NSString *time = [[responseDic  dictionaryForKey:@"data"]stringForKey:@"last_ts"];
-            if (time != nil) {
-                self.lastTimeTs = time;
-            }
-            if(self.dataArray == nil){
-                self.dataArray = [[[NSMutableArray alloc] init] autorelease];
-            }
-            NSMutableArray *list = [NSMutableArray arrayWithArray:[[responseDic dictionaryForKey:@"data"]  arrayForKey:@"list"]];
-            if([list count]>0){
-                self.dataArray = [BBRecordMoonView filterObjectByAddAraay:list withOriginArray:self.dataArray];
-                [self.tableView reloadData];
-                CGRect tableRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count]-1 inSection:0]];
-                CGFloat celly = MAX(self.frame.size.height, tableRect.origin.y + tableRect.size.height);
-                [_refresh_pull_up_header_view setFrame:CGRectMake(0, celly, self.frame.size.width, self.frame.size.height)];
-                
-            }else if([self.dataArray count]==0){
-                [_refresh_pull_up_header_view setFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height)];
-                if ([self.userEncodeId isNotEmpty] && ![self.userEncodeId isEqual:[BBUser getEncId]])
+    NSString *status = [self.jsonData stringForKey:@"status"];
+    if ([status isEqualToString:@"success"]) {
+        NSString *time = [[self.jsonData  dictionaryForKey:@"data"]stringForKey:@"last_ts"];
+        if (time != nil) {
+            self.lastTimeTs = time;
+        }
+        if(self.dataArray == nil){
+            self.dataArray = [[[NSMutableArray alloc] init] autorelease];
+        }
+        NSMutableArray *list = [NSMutableArray arrayWithArray:[[self.jsonData dictionaryForKey:@"data"]  arrayForKey:@"list"]];
+        if([list count]>0){
+            [self.tableView reloadData];
+            CGRect tableRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:[self.dataArray count]-1 inSection:0]];
+            CGFloat celly = MAX(self.frame.size.height, tableRect.origin.y + tableRect.size.height);
+            [_refresh_pull_up_header_view setFrame:CGRectMake(0, celly, self.frame.size.width, self.frame.size.height)];
+            
+        }else if([self.dataArray count]==0){
+            [_refresh_pull_up_header_view setFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height)];
+            if (![self.userEncodeId isEqual:[BBUser getEncId]])
+            {
+                // is_publish =1：心情记录隐私   =0：没有心情记录
+                NSString *isPublish = [[self.jsonData dictionaryForKey:@"data"] stringForKey:@"is_publish"];
+                if([isPublish isEqualToString:@"0"])
                 {
-                    // is_publish =1：心情记录隐私   =0：没有心情记录
-                    NSString *isPublish = [[responseDic dictionaryForKey:@"data"] stringForKey:@"is_publish"];
-                    if([isPublish isEqualToString:@"0"])
-                    {
-                        [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"这里还什么都没有"];
-                    }
-                    else
-                    {
-                        [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"她的心情记录没有公开哦~"];
-                    }
+                    [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"这里还什么都没有"];
+                }
+                else
+                {
+                    [self showNoDataNoticeWithType:HMNODATAVIEW_DATAERROR  withTitle:@"她的心情记录没有公开哦~"];
                 }
             }
-        }else{
-            [self showDataErrorWithType:HMNODATAVIEW_DATAERROR withAlertTitle:@"提示！" withAlertMessage:[[responseDic dictionaryForKey:@"data"] stringForKey:@"message"]];
         }
     }else{
-        [self showDataErrorWithType:HMNODATAVIEW_DATAERROR withAlertTitle:@"提示！" withAlertMessage:@"加载数据失败"];
+        [self showDataErrorWithType:HMNODATAVIEW_DATAERROR withAlertTitle:@"提示！" withAlertMessage:[[self.jsonData dictionaryForKey:@"data"] stringForKey:@"message"]];
     }
+
     //加载完成去掉加载框
     if(_pull_up_reloading==YES){
         [self performSelector:@selector(doneLoadingPullUpTableViewData) withObject:nil afterDelay:0.1 inModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
     }
 }
-- (void)nextLoadDataFail:(ASIHTTPRequest *)request
+- (void)nextLoadDataFail
 {
     self.m_NoDataView.hidden = YES;
     
     if(!self.hud.isHidden){
         [self.hud hide:YES];
     }
-    NSError *error = [request error];
-    [self showDataErrorWithType:HMNODATAVIEW_NETERROR withAlertTitle:@"亲，您的网络不给力啊" withAlertMessage:[error localizedFailureReason]];
+    [self showDataErrorWithType:HMNODATAVIEW_NETERROR withAlertTitle:@"亲，您的网络不给力啊" withAlertMessage:[[self.jsonData dictionaryForKey:@"data"] stringForKey:@"message"]];
     
     //加载完成去掉加载框
     if(_pull_up_reloading==YES){

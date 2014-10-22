@@ -203,13 +203,11 @@
         [MobClick event:@"music_v2" label:@"胎教音乐（其他）"];
     }
     NSDictionary *dic = [self.musicListArray objectAtIndex:indexPath.row];
-    
     if ([[dic stringForKey:@"need_check"] intValue] == 1) {
         if ([[dic stringForKey:@"valid"] intValue] == 1) {
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([[defaults objectForKey:[[dic stringForKey:@"url"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] isEqualToString:@"YES"]) {
-                
                 BBMusicViewController *musicController = [[[BBMusicViewController alloc] init] autorelease];
                 musicController.musicTypeInfo = dic;
                 [self.navigationController pushViewController:musicController animated:YES];

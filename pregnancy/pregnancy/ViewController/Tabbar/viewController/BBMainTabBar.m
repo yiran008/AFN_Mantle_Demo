@@ -342,9 +342,19 @@
 - (void)selectedTab:(BBTabBarItemView *)view
 {
     int newIndex = view.tag-ITEM_TAG_START;
-    
-    // 用户是否重复点击tab
-    BOOL isRetapTab = NO;
+//    if (newIndex == 4) {
+//        if (![BBUser isLogin]) {
+//            BBLogin *login = [[BBLogin alloc]initWithNibName:@"BBLogin" bundle:nil];
+//            login.delegate = self;
+//            login.m_LoginType = BBPresentLogin;
+//            BBCustomNavigationController *navCtrl = [[BBCustomNavigationController alloc]initWithRootViewController:login];
+//            [navCtrl setColorWithImageName:@"navigationBg"];
+//            [self  presentViewController:navCtrl animated:YES completion:^{
+//                
+//            }];
+//            return;
+//        }
+//    }
     
     [self unselectedTab:view];
     [view setSelected:YES];
@@ -385,39 +395,23 @@
         }
     }
     
-    if (newIndex == self.selectedIndex)
-    {
-        isRetapTab = YES;
-    }
-    
     self.selectedIndex = newIndex;
     [self hideTipPointWithIndex:newIndex];
     
-    if (newIndex == MAIN_TAB_INDEX_MAINPAGE)
+    if (newIndex == 0)
     {
         //切到首页，去获取工具页更新消息
         [self checkToolListUpdate];
         //切到首页，去获取特卖点标状态
         [self checkMallStatus];
     }
-    else if (newIndex == MAIN_TAB_INDEX_TOOLPAGE)
+    else if (newIndex == 3)
     {
         //切到工具页把本次获取的请求cancel掉
         [self.s_GetToolsListRequest clearDelegatesAndCancel];
         
     }
-    else if (newIndex == MAIN_TAB_INDEX_MALL)
-    {
-        if (isRetapTab)
-        {
-            UIViewController *mallVC = [self getViewControllerAtIndex:newIndex];
-            if ([mallVC isKindOfClass:[BBSupportTopicDetail class]] && [((BBSupportTopicDetail*)mallVC).loadURL rangeOfString:@"/flashsale"].length > 0)
-            {
-                [((BBSupportTopicDetail*)mallVC).topicDetailWebView stringByEvaluatingJavaScriptFromString:@"activate();"];
-            }
-        }
-    }
-    else if (newIndex == MAIN_TAB_INDEX_PERSONCENTER)
+    else if (newIndex == 4)
     {
         //切到特卖页cancel掉请求
         [self.s_GetMallStatusRequest clearDelegatesAndCancel];

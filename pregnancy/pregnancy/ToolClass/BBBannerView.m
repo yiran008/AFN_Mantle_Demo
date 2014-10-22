@@ -188,7 +188,6 @@
         if (!BannerCloseButton)
         {
             BannerCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            BannerCloseButton.exclusiveTouch = YES;
             [BannerCloseButton setFrame:CGRectMake(self.width-40, 0, 40, 40)];
             [BannerCloseButton setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
             [BannerCloseButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];

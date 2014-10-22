@@ -55,7 +55,6 @@ HMNoDataViewDelegate
         if (_refresh_pull_up_header_view == nil) {
             EGORefreshPullUpTableHeaderView *pullUpView = [[EGORefreshPullUpTableHeaderView alloc] initWithFrame: CGRectMake(0.0, self.frame.size.height+2000, self.frame.size.width, self.frame.size.height)];
             pullUpView.delegate = self;
-            pullUpView.backgroundColor = [UIColor clearColor];
             [_tableView addSubview:pullUpView];
             _refresh_pull_up_header_view = pullUpView;
             [pullUpView release];
@@ -116,11 +115,12 @@ HMNoDataViewDelegate
 
 - (void)tableView:(UITableView *)tableViews didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableDictionary *data = [self.dataArray objectAtIndex:indexPath.row];
-    BBRecordDetail *recordDetail = [[[BBRecordDetail alloc]initWithNibName:@"BBRecordDetail" bundle:nil]autorelease];
-    recordDetail.recordDetailDic = data;
-    recordDetail.isSquare = YES;
-    [self.viewController.navigationController pushViewController:recordDetail animated:YES];
+    //暂时屏蔽
+//    NSMutableDictionary *data = [self.dataArray objectAtIndex:indexPath.row];
+//    BBRecordDetail *recordDetail = [[[BBRecordDetail alloc]initWithNibName:@"BBRecordDetail" bundle:nil]autorelease];
+//    recordDetail.recordDetailDic = data;
+//    recordDetail.isSquare = YES;
+//    [self.viewController.navigationController pushViewController:recordDetail animated:YES];
 
 }
 

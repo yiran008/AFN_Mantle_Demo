@@ -118,7 +118,6 @@
     {
         self.applyButton.hidden = YES;
     }
-    self.applyButton.exclusiveTouch = YES;
 }
 
 //点击申请返现按钮

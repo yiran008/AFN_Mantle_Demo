@@ -49,7 +49,6 @@
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
     [panRecognizer setDelegate:self];
     [self.view addGestureRecognizer:panRecognizer];
-    self.view.exclusiveTouch = YES;
     
     IPHONE5_ADAPTATION
     [self.m_EmailTextField setValue:[UIColor colorWithRed:240/255.0 green:200/255.0 blue:210/255.0 alpha:1.0] forKeyPath:@"_placeholderLabel.textColor"];
@@ -268,7 +267,7 @@
         }
         [MobClick event:@"sign_in_up_v2" label:@"成功登录总次数"];
         
-//        [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
 
         
         //重新为该设备推送绑定用户LoginString

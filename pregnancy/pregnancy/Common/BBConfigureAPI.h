@@ -126,7 +126,7 @@ static const BOOL API_URL_PRAMA_AVAILABLE       = YES;//是否请求打开参数
 #define PAGE_KEY                                (@"page")
 #define APP_ID_KEY                              (@"app_id")
 #define TYPE_KEY                                (@"type")
-#define POST                                    (@"post")
+#define POSTS                                    (@"post")
 #define REPLY                                   (@"reply")
 #define LOGIN_STRING                            (@"login_string")
 #define PHOTO_ID_KEY                            (@"photo_id")
@@ -211,6 +211,25 @@ static const BOOL API_URL_PRAMA_AVAILABLE       = YES;//是否请求打开参数
 #define FATHER_GENDER_KEY                       (@"gender")
 #define FATHER_TASK_ID_KEY                      (@"task_id")
 #endif
+
+//AFNetwork
+#define AFN_PUBLIC_PARAMS \
+if (IOS_VERSION >= 7.0)\
+{\
+[parameters setObject:[OpenUDID value] forKey:MAC_KEY];\
+}\
+else\
+{\
+[parameters setObject:[BBDeviceUtility macAddress] forKey:MAC_KEY];\
+}\
+[parameters setObject:[BBPregnancyInfo pregancyDateYMDByStringForAPI] forKey:@"bpreg_brithday"];\
+[parameters setObject:[BBPregnancyInfo pregnanyClientAndStatus] forKey:@"client_baby_status"];\
+[parameters setObject:IOS_CLIENT forKey:CLIENT_TYPE_KEY];\
+[parameters setObject:@"text_json" forKey:@"result_format"];\
+[parameters setObject:@"pregnancy" forKey:@"app_id"];\
+[parameters setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] forKey:@"version"];\
+[parameters setObject:[BBLocation userLocationLongitude] forKey:GPS_LONGITUDE];\
+[parameters setObject:[BBLocation userLocationLatitude] forKey:GPS_LATITUDE];
 
 #define ASI_DEFAULT_INFO_POST \
     [request setGetValue:[BBPregnancyInfo pregancyDateYMDByStringForAPI] forKey:@"bpreg_brithday"];\

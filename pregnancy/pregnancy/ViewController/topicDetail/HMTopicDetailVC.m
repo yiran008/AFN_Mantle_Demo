@@ -365,7 +365,6 @@
     UISwipeGestureRecognizer *recognizer= [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(backAction:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     [self.m_TopicTableView addGestureRecognizer:recognizer];
-    self.m_TopicTableView.exclusiveTouch = YES;
     [recognizer ah_release];
     
     s_NoDataView = [[[HMNoDataView alloc] initWithType:HMNODATAVIEW_NETERROR] ah_autorelease];
@@ -759,27 +758,20 @@
 
 - (void)freshTopicTitleView
 {
-    
-    self.m_IsTopImageView.hidden = YES;
-    self.m_IsNewImageView.hidden = YES;
-    self.m_IsBestImageView.hidden = YES;
-    self.m_IsHelpImageView.hidden = YES;
-    self.m_TopicTitleStyledLabel.hidden = YES;
+    [m_TopicTitleCircleBgView setBackgroundColor:UI_VIEW_BGCOLOR];
 
-    [self.m_TopicTitleCircleBgView setBackgroundColor:UI_VIEW_BGCOLOR];
-
-    self.m_TopicTitleCircleLabel.textColor = DETAIL_CIRCLENAME_COLOR;
+    m_TopicTitleCircleLabel.textColor = DETAIL_CIRCLENAME_COLOR;
     self.m_TopicViewCountLabel.textColor = DETAIL_COUNT_COLOR;
     self.m_TopicReplyCountLabel.textColor = DETAIL_COUNT_COLOR;
-    self.m_TopicTitleStyledLabel.textColor = DETAIL_Title_COLOR;
+    m_TopicTitleStyledLabel.textColor = DETAIL_Title_COLOR;
     
     self.m_TopicViewCountLabel.text = self.m_ViewCount;
     self.m_TopicReplyCountLabel.text = self.m_ReplyCount;
     
-    self.m_TopicTitleCircleLabel.text = [NSString stringWithFormat:@"来自: %@", self.m_CircleName];
-    if ([self.m_TopicTitle isNotEmpty])
+    m_TopicTitleCircleLabel.text = [NSString stringWithFormat:@"来自: %@", self.m_CircleName];
+    if ([m_TopicTitle isNotEmpty])
     {
-        self.m_TopicTitleStyledLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+        m_TopicTitleStyledLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         
         float start = 12;
         self.m_IsTopImageView.left = start;
@@ -822,34 +814,35 @@
             self.m_IsHelpImageView.hidden = NO;
         }
         
-        NSString *title = [NSString spaceWithFont:[UIFont systemFontOfSize:16.0f] top:self.m_IsTop new:_m_IsNew best:m_IsBest help:m_IsHelp pic:NO add:0];
+        
+        NSString *title = [NSString spaceWithFont:[UIFont systemFontOfSize:18.0f] top:self.m_IsTop new:_m_IsNew best:m_IsBest help:m_IsHelp pic:NO add:0];
         if (IOS_VERSION < 7.0)
         {
+            self.m_IsTopImageView.top = 35;
+            self.m_IsNewImageView.top = 35;
+            self.m_IsBestImageView.top = 35;
+            self.m_IsHelpImageView.top = 35;
+
             title = [NSString spaceWithFont:[UIFont systemFontOfSize:16.0f] top:self.m_IsTop new:_m_IsNew best:m_IsBest help:m_IsHelp pic:NO add:0];
         }
         title = [NSString stringWithFormat:@"%@%@", title, m_TopicTitle];
         
+        m_TopicTitleStyledLabel.text = title;
+        m_TopicTitleStyledLabel.hidden = NO;
+        
         if ([title isNotEmpty])
         {
-            self.m_TopicTitleStyledLabel.text = title;
-            self.m_TopicTitleStyledLabel.hidden = NO;
             CGSize size = [self sizeOfTitle];
-            self.m_TopicTitleStyledLabel.height = size.height;
-            
+            m_TopicTitleStyledLabel.height = size.height;
         }
         
-        self.m_TopicTitleView.height = self.m_TopicTitleStyledLabel.bottom + 6;
-        
-        self.m_IsTopImageView.top = self.m_TopicTitleStyledLabel.top + 3 ;
-        self.m_IsNewImageView.top = self.m_TopicTitleStyledLabel.top + 3 ;
-        self.m_IsBestImageView.top = self.m_TopicTitleStyledLabel.top + 3 ;
-        self.m_IsHelpImageView.top = self.m_TopicTitleStyledLabel.top + 3;
+        m_TopicTitleView.height = m_TopicTitleStyledLabel.bottom + 6;
     }
     else
     {
-        self.m_TopicTitleView.height = self.m_TopicTitleCircleBgView.height;
+        m_TopicTitleView.height = m_TopicTitleCircleBgView.height;
     }
-    [self.m_TopicTableView setTableHeaderView:self.m_TopicTitleView];
+    [m_TopicTableView setTableHeaderView:m_TopicTitleView];
 }
 
 - (CGSize)sizeOfTitle
@@ -866,14 +859,14 @@
         paragraphStyle.headIndent = 0.0f;
         paragraphStyle.lineSpacing = 3.0f;
         
-        NSDictionary *attributes = @{NSFontAttributeName : self.m_TopicTitleStyledLabel.font,
+        NSDictionary *attributes = @{NSFontAttributeName : m_TopicTitleStyledLabel.font,
                                      NSParagraphStyleAttributeName : paragraphStyle};
         
-        size = [self.m_TopicTitleStyledLabel.text boundingRectWithSize:CGSizeMake(self.m_TopicTitleStyledLabel.width, 80) options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin) attributes:attributes context:nil].size;
+        size = [m_TopicTitleStyledLabel.text boundingRectWithSize:CGSizeMake(m_TopicTitleStyledLabel.width, 80) options:(NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin) attributes:attributes context:nil].size;
     }
     else
     {
-        size = [self.m_TopicTitleStyledLabel.text sizeWithFont:self.m_TopicTitleStyledLabel.font constrainedToSize:CGSizeMake(self.m_TopicTitleStyledLabel.width, 80) lineBreakMode:NSLineBreakByCharWrapping];
+        size = [m_TopicTitleStyledLabel.text sizeWithFont:m_TopicTitleStyledLabel.font constrainedToSize:CGSizeMake(m_TopicTitleStyledLabel.width, 80) lineBreakMode:NSLineBreakByCharWrapping];
     }
     
     return size;

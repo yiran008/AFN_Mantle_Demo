@@ -43,10 +43,7 @@
 
 - (void)loadNextPageData;
 - (void)reloadData;
-- (void)reloadDataFinished:(ASIHTTPRequest *)request;
-- (void)reloadDataFail:(ASIHTTPRequest *)request;
-- (void)nextLoadDataFinished:(ASIHTTPRequest *)request;
-- (void)nextLoadDataFail:(ASIHTTPRequest *)request;
+
 
 - (void)refresh;
 +(NSMutableArray *)filterObjectByAddAraay:(NSArray *) addArray withOriginArray:(NSMutableArray *)originArray;

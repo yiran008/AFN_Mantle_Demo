@@ -10,9 +10,6 @@
 #import "ZXScanMusicQR.h"
 #import "BBSupportTopicDetail.h"
 
-#define TOP_BUTTON_Y (86)
-#define BOTTOM_BUTTOM_Y (151)
-
 @interface BBMusicActivation ()
 @property (nonatomic, retain) HMNoDataView *m_NoDataView;
 @end
@@ -24,7 +21,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _m_ScanDic = [[NSDictionary alloc] init];
     }
     return self;
 }
@@ -54,7 +50,6 @@
             self.reminderLabel.text = description;
             [self.buyPregnancyBoxButton setTitle:buyMark forState:UIControlStateNormal];
             [self.scanMarkButton setTitle:scanMark forState:UIControlStateNormal];
-            
         }
     }
     [self.navigationItem setTitleView:[BBNavigationLabel customNavigationLabel:title]];
@@ -68,37 +63,8 @@
     [self.navigationItem setLeftBarButtonItem:backBarButton];
     ((UIButton*)[self.view viewWithTag:100]).exclusiveTouch = YES;
     ((UIButton*)[self.view viewWithTag:101]).exclusiveTouch = YES;
-    
-    [self refreshButtonLocation];
-    
-    self.buyPregnancyBoxButton.exclusiveTouch = YES;
-    self.scanMarkButton.exclusiveTouch = YES;
-
 }
 
-- (void)refreshButtonLocation{
-
-    if ([[self.m_ScanDic stringForKey:@"jump_url"] isNotEmpty]) {
-        
-        self.buyPregnancyBoxBgView.hidden = NO;
-        self.scanMarkBgView.hidden = NO;
-        
-        self.buyPregnancyBoxBgView.top = TOP_BUTTON_Y;
-        self.scanMarkBgView.top = BOTTOM_BUTTOM_Y;
-        
-    }else{
-        
-        self.buyPregnancyBoxBgView.hidden = YES;
-        self.scanMarkBgView.hidden = NO;
-        
-        self.scanMarkBgView.top = TOP_BUTTON_Y;
-    }
-
-}
-- (void)viewWillAppear:(BOOL)animated{
-
-    [super viewWillAppear:animated];
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

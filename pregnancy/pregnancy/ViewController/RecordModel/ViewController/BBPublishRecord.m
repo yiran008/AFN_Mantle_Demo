@@ -10,7 +10,6 @@
 #import "BBRecordRequest.h"
 #import "BBRecordMainPage.h"
 #define BACK_ALERT_VIEW_TAG 3
-#define MAX_CONTENT_LENGTH  500
 
 @interface BBPublishRecord ()
 @property (assign) NSInteger recordContentCount;
@@ -118,10 +117,6 @@
     if (IS_IPHONE5) {
         [self.dateView setFrame:CGRectMake(self.dateView.frame.origin.x, self.dateView.frame.origin.y+88, 320, self.dateView.frame.size.height)];
     }
-    
-    self.dateButton.exclusiveTouch = YES;
-    self.imageButton.exclusiveTouch = YES;
-    self.statusButton.exclusiveTouch = YES;
 }
 
 -(IBAction)backAction:(id)sender
@@ -160,7 +155,7 @@
         return;
     }
     
-    if (self.recordContentCount > MAX_CONTENT_LENGTH)
+    if (self.recordContentCount > 500)
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"亲！内容已超过500字了！" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
         [alertView show];
@@ -504,7 +499,7 @@
 #pragma mark - TextView Delegate
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-//    if (range.location >= MAX_CONTENT_LENGTH){
+//    if (range.location >= 500) {
 //        return NO;
 //    }else{
         return YES;
@@ -520,7 +515,7 @@
 {
     NSString *textContent = textView.text;
     int existTextNum = [textContent length];
-    self.countLabel.text = [NSString stringWithFormat:@"还可以输入%d个字",MAX_CONTENT_LENGTH-existTextNum];
+    self.countLabel.text = [NSString stringWithFormat:@"还可以输入%d个字",500-existTextNum];
     self.recordContentCount = existTextNum;
 }
 
@@ -568,12 +563,12 @@
     {
         [self enableButton];
         [self.contentView becomeFirstResponder];
-        if (self.s_IFlyString && self.recordContentCount < MAX_CONTENT_LENGTH)
+        if (self.s_IFlyString)
         {
             [self.contentView insertText:self.s_IFlyString];
         }
         int existTextNum = [self.contentView.text  length];
-        self.countLabel.text = [NSString stringWithFormat:@"还可以输入%d个字",MAX_CONTENT_LENGTH-existTextNum];
+        self.countLabel.text = [NSString stringWithFormat:@"还可以输入%d个字",500-existTextNum];
         self.recordContentCount = existTextNum;
         self.s_IFlyString = nil;
     }
@@ -612,8 +607,7 @@
     self.navigationItem.rightBarButtonItem.enabled  = YES;
 }
 
--(IBAction)xunfeiInput:(id)sender
-{
+-(IBAction)xunfeiInput:(id)sender{
     [MobClick event:@"mood_v2" label:@"语音点击"];
     [self.contentView resignFirstResponder];
     [self keyboardCancelChangeFrame];

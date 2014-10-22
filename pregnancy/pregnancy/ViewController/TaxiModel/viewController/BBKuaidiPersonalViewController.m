@@ -82,8 +82,6 @@
     
     self.progressBar = [[[MBProgressHUD alloc]initWithView:self.view]autorelease];
     [self.view addSubview:self.progressBar];
-    
-    self.goVerificationButton.exclusiveTouch = YES;
 }
 
 - (void)didReceiveMemoryWarning

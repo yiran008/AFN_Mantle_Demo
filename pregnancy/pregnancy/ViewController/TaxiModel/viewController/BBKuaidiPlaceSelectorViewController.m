@@ -89,7 +89,6 @@
     UITapGestureRecognizer *tapGr = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]autorelease];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
-    self.view.exclusiveTouch = YES;
     
     self.cityCode = [self.geocoderPalcesDic objectForKey:@"cityCode"];
     if (self.placeSelectorType == BBKuaidiPlaceSelectorTypeEnd)
@@ -103,8 +102,6 @@
         self.geoPlacesArr = (NSMutableArray *)[self.geocoderPalcesDic arrayForKey:@"pois"];
     }
     [self.navigationController.navigationBar addSubview: self.naviBar];
-    
-    self.submmitButton.exclusiveTouch = YES;
 }
 
 - (void)didReceiveMemoryWarning

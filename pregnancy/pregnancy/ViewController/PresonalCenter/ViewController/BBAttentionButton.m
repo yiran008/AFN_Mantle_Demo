@@ -28,7 +28,7 @@
     if (self) {
         self = [UIButton buttonWithType:UIButtonTypeCustom];
         self.frame = frame;
-        self.exclusiveTouch = YES;
+    
         [self freshAttentionStatus:type];
         
     }

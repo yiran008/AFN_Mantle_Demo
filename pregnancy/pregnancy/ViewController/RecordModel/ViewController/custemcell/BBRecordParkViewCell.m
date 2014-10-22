@@ -90,9 +90,6 @@
     self.createTsLabel.top  = 70 + height - 18;
     [self.createTsLabel setText:[BBTimeUtility stringDateWithPastTimestamp:[[dataDic stringForKey:@"create_ts"]intValue]]];
     self.lineView.top = 70+height-2;
-    
-    self.avatarButton.exclusiveTouch = YES;
-    
 }
 
 - (IBAction)avatarEvent:(id)sender {

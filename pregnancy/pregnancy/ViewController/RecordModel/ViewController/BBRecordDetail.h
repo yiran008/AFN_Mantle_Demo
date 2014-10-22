@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RecordConfig.h"
+#import "BBRecordClass.h"
 
 #define DELETE_ALERT_VIEW_TAG 99
 
@@ -28,7 +29,7 @@
 
 @property(nonatomic,strong) IBOutlet UILabel *dateLabel;
 
-@property(nonatomic,strong) NSDictionary *recordDetailDic;
+@property(nonatomic,strong) BBRecordClass *recordDetailClass;
 
 @property(nonatomic,strong) ASIFormDataRequest *deleteRequest;
 

@@ -112,7 +112,6 @@
 
     // 添加切换页面按钮
     self.pageBtn = [[[UIButton alloc] initWithFrame:CGRectMake(12, 7, 80, 36)] ah_autorelease];//19 17
-    self.pageBtn.exclusiveTouch = YES;
     [pageBtn setImage:[UIImage imageWithColor:UI_NAVIGATION_BGCOLOR size:pageBtn.size] forState:UIControlStateNormal];
     [pageBtn roundedRect:6.0 borderWidth:0.0 borderColor:[UIColor clearColor]];
     [pageBtn addTarget:self action:@selector(didPressPageBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -137,7 +136,6 @@
     UIImage *imagebg1 = [UIImage imageNamed:@"detail_page_frame1"];
     UIImage *imagebg2 = [imagebg1 resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     self.replyBtn = [[[UIButton alloc] initWithFrame:CGRectMake(UI_SCREEN_WIDTH-12-207, 7, 207, 36)] ah_autorelease];
-    self.replyBtn.exclusiveTouch = YES;
     [replyBtn setBackgroundImage:imagebg2 forState:
      UIControlStateNormal];
     [replyBtn addTarget:self action:@selector(didPressReplyBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -159,7 +157,6 @@
     pageView.backgroundColor = [UIColor clearColor];
     
     UIButton *upBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 42, pageView.width/4, 42)] ah_autorelease];
-    upBtn.exclusiveTouch = YES;
     [upBtn setBackgroundColor:[UIColor clearColor]];
     [upBtn setTitle:@"上一页" forState:UIControlStateNormal];
     [upBtn setTitleColor:DETAIL_PAGE_INVALID_COLOR forState:UIControlStateNormal];
@@ -170,7 +167,6 @@
     self.upPageBtn = upBtn;
     
     UIButton *downBtn = [[[UIButton alloc] initWithFrame:CGRectMake(pageView.width/4*3, 42, pageView.width/4, 42)] ah_autorelease];
-    downBtn.exclusiveTouch = YES;
     [downBtn setBackgroundColor:[UIColor clearColor]];
     [downBtn setTitle:@"下一页" forState:UIControlStateNormal];
     [downBtn setTitleColor:DETAIL_PAGE_INVALID_COLOR forState:UIControlStateNormal];

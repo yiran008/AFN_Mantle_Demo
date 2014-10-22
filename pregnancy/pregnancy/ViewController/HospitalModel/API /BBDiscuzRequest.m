@@ -52,7 +52,7 @@
    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/mobile_community/get_user_discuz_list_v2",BABYTREE_URL_SERVER]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setGetValue:userEncodeId forKey:USER_ENCODE_ID_KEY];
-    [request setGetValue:POST forKey:TYPE_KEY];
+    [request setGetValue:POSTS forKey:TYPE_KEY];
     [request setGetValue:@"20" forKey:@"limit"];
     [request setGetValue:[NSString stringWithFormat:@"%d",start] forKey:@"page"];
     if ([BBUser isLogin]) {

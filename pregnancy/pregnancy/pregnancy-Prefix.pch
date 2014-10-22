@@ -16,4 +16,6 @@
     #import <CoreData/CoreData.h>
     #import "BBAppConfig.h"
     #import "CommonDef.h"
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
 #endif

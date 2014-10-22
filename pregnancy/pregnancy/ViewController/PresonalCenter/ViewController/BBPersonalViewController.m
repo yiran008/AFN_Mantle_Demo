@@ -61,7 +61,6 @@
 @property (assign) BOOL s_SucceedGetUserInfo;
 @property (assign) BOOL s_IsPendingRequest;
 @property (assign) BOOL s_IsErrorAlertShowing;
-@property (strong, nonatomic) IBOutlet UIView *prepareInfoView;
 @end
 
 @implementation BBPersonalViewController
@@ -111,7 +110,6 @@
     [self initializeUI];
     
     [self getUserInfo];
-    
 }
 
 -(void)initializeUI
@@ -143,8 +141,6 @@
     self.fansListButton.exclusiveTouch = YES;
     self.messageButton.exclusiveTouch = YES;
     self.followButton.exclusiveTouch = YES;
-    self.actionButton.exclusiveTouch = YES;
-
 }
 
 -(void)registerPersonalNotification
@@ -382,7 +378,6 @@
         self.listTable.height = [self.listTitleArray count] * 54;
         [self resetScrollView];
     }
-    [self adjustUserInfoRelateUI];
 }
 
 - (void)updateUIFrameAfterFailGetUserInfo
@@ -400,12 +395,12 @@
         self.listTable.height = [self.listTitleArray count] * 54;
         [self resetScrollView];
     }
-    [self adjustUserInfoRelateUI];
 }
 
 #pragma mark - private method
 - (void)updateInfo
 {
+
     if ([BBUser getNewUserRoleState] == BBUserRoleStateHasBaby)
     {
         self.dueDateLable.text = [NSString stringWithFormat:@"宝宝生日：%@",[BBPregnancyInfo pregancyDateByString]];
@@ -454,7 +449,6 @@
 
 - (void)getUserInfo
 {
-    [self adjustUserInfoRelateUI];
     if (self.isToolBar && ![BBUser isLogin])
     {
         self.levelLabel.text = @"LV.0";
@@ -498,30 +492,6 @@
         self.s_IsPendingRequest = YES;
     }
 
-}
-
--(void)adjustUserInfoRelateUI
-{
-    if (self.isToolBar)
-    {
-        BOOL isHide = [BBUser getNewUserRoleState] == BBUserRoleStatePrepare;
-        self.hospitalIcon.hidden = isHide;
-        self.hospitalLabel.hidden = isHide;
-        self.duedateIcon.hidden = isHide;
-        self.dueDateLable.hidden = isHide;
-        if (isHide)
-        {
-            self.areaLabel.top = 125;
-            self.locationIcon.top = 125;
-            self.prepareInfoView.top = 20;
-        }
-        else
-        {
-            self.areaLabel.top = 88;
-            self.locationIcon.top = 88;
-            self.prepareInfoView.top = -8;
-        }
-    }
 }
 
 - (NSMutableAttributedString*)combineString:(NSString *)string font:(UIFont*)font withString:(NSString*)appendString appendFont:(UIFont*)appendFont

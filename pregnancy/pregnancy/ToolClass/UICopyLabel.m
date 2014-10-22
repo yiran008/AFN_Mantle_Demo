@@ -39,7 +39,6 @@
     self.userInteractionEnabled = YES;  //用户交互的总开关
     UILongPressGestureRecognizer *touch = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self addGestureRecognizer:touch];
-    self.exclusiveTouch = YES;
     [touch release];
 }
 

@@ -48,7 +48,6 @@
     
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.exclusiveTouch = YES;
     [backButton setFrame:CGRectMake(0, 0, 40, 30)];
     [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
     [backButton setImage:[UIImage imageNamed:@"backButtonPressed"] forState:UIControlStateHighlighted];

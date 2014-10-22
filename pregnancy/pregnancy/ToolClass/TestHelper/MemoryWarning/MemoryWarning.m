@@ -85,8 +85,6 @@ static MemoryWarning *memoryWarning = nil;
     [_memoryWindow addGestureRecognizer:leftSwipe];
     
     [leftSwipe release];
-    
-    _memoryWindow.exclusiveTouch = YES;
 
 }
 
@@ -102,7 +100,6 @@ static MemoryWarning *memoryWarning = nil;
     _memoryWindow.alpha=1;
     
     UIButton *memory=[[UIButton alloc] initWithFrame:CGRectMake(10, 2, 70, 16)];
-    memory.exclusiveTouch = YES;
     memory.backgroundColor=[UIColor clearColor];
     memory.titleLabel.textAlignment=NSTextAlignmentCenter;
     memory.titleLabel.font=[UIFont boldSystemFontOfSize:15];
@@ -122,7 +119,6 @@ static MemoryWarning *memoryWarning = nil;
     [memoryChangeLable release];
     
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeButton.exclusiveTouch = YES;
     closeButton.showsTouchWhenHighlighted = YES;
     closeButton.frame = CGRectMake(300, 0, 20, 20);
     [closeButton setTitle:@"X" forState:UIControlStateNormal];

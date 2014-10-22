@@ -12,21 +12,16 @@
 #import "BBToolCell.h"
 #import "BBToolCollectionHeader.h"
 #import "BBToolCollectionFooter.h"
-#import "BBSupportTopicDetail.h"
 
 #define TOOL_COUNT_PER_ROW_DEFAULT 3
 #define TOOL_MIN_WIDTH 56
 #define TOOL_MIN_HEIGHT 96
 #define BOTTOM_VIEW_TAG 999
-#define SELECT_URL_ALERT_TAG 200
-#define CUSTOM_URL_ALERT_TAG 201
-#define RENSHOU_URL_NAME @"http://www-int2.sino-life.com/SL_LEM/thirdPartyHandel/main.do?loginId=BBTREE"
-#define RENSHOU_URL_IP @"http://192.168.9.166:45040/SL_LEM/thirdPartyHandel/main.do?loginId=BBTREE"
 static NSString *toolCellIdentifier = @"BBToolCell";
 static NSString *toolHeaderIdentifier = @"BBToolCollectionHeader";
 static NSString *toolFooterIdentifier = @"BBToolCollectionFooter";
 
-@interface BBToolsNewVC ()<BBToolOpreationDelegate,UIAlertViewDelegate>
+@interface BBToolsNewVC ()<BBToolOpreationDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *s_ToolCollectionView;
 
@@ -86,66 +81,6 @@ static NSString *toolFooterIdentifier = @"BBToolCollectionFooter";
     
     UINib *footerNib = [UINib nibWithNibName:NSStringFromClass([BBToolCollectionFooter class]) bundle:[NSBundle mainBundle]];
     [self.s_ToolCollectionView registerNib:footerNib  forSupplementaryViewOfKind:UICollectionElementKindSectionFooter  withReuseIdentifier:toolFooterIdentifier];
-    self.navigationItem.rightBarButtonItem = ({
-        UIBarButtonItem *renshouItem = [[UIBarButtonItem alloc]initWithTitle:@"人寿  " style:UIBarButtonItemStyleBordered target:self action:@selector(renshouButtonClicked)];
-        renshouItem;
-    });
-        
-}
-
--(void)renshouButtonClicked
-{
-    UIAlertView *selectUrlAlert = [[UIAlertView alloc]initWithTitle:@"人寿URL" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"www-int2.sino-life.com",@"192.168.9.166:45040",@"自定义URL", nil];
-    selectUrlAlert.tag = SELECT_URL_ALERT_TAG;
-    [selectUrlAlert show];
-}
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == SELECT_URL_ALERT_TAG)
-    {
-        NSInteger firstOtherIndex = [alertView firstOtherButtonIndex];
-        if (buttonIndex == firstOtherIndex)
-        {
-            [self pushWebViewOfUrl:RENSHOU_URL_NAME];
-        }
-        else if (buttonIndex == firstOtherIndex+1)
-        {
-            [self pushWebViewOfUrl:RENSHOU_URL_IP];
-        }
-        else if (buttonIndex == firstOtherIndex+2)
-        {
-            UIAlertView *customUrlAlert = [[UIAlertView alloc]initWithTitle:@"输入新URL" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            [customUrlAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-            customUrlAlert.tag = CUSTOM_URL_ALERT_TAG;
-            UITextField *inputTextField = [customUrlAlert textFieldAtIndex:0];
-            inputTextField.text = RENSHOU_URL_NAME;
-            inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            [customUrlAlert show];
-        }
-    }
-    else if (alertView.tag == CUSTOM_URL_ALERT_TAG)
-    {
-        NSInteger firstOtherIndex = [alertView firstOtherButtonIndex];
-        if (buttonIndex == firstOtherIndex)
-        {
-            UITextField *inputTextField = [alertView textFieldAtIndex:0];
-            NSString *url = inputTextField.text;
-            [self pushWebViewOfUrl:url];
-        }
-    }
-}
-
--(void)pushWebViewOfUrl:(NSString*)url
-{
-    NSString *trimedUrl = [url trim];
-    if ([trimedUrl isNotEmpty])
-    {
-        BBSupportTopicDetail *exteriorURL = [[BBSupportTopicDetail alloc] initWithNibName:@"BBSupportTopicDetail" bundle:nil];
-        exteriorURL.isShowCloseButton = NO;
-        exteriorURL.hidesBottomBarWhenPushed = YES;
-        [exteriorURL setLoadURL:trimedUrl];
-        [self.navigationController pushViewController:exteriorURL animated:YES];
-    }
 }
 
 -(void)adjustBottomView
@@ -505,9 +440,7 @@ static NSString *toolFooterIdentifier = @"BBToolCollectionFooter";
         if (indexPath.section>=0 && indexPath.section<[self.s_KindArray count])
         {
             NSString *toolKindKey = [[self.s_KindArray objectAtIndex:indexPath.section] stringForKey:@"name"];
-            
             NSArray *toolModelsArray = [self.s_ToolsData arrayForKey:toolKindKey];
-
             if (indexPath.row >=0 && indexPath.row < [toolModelsArray count])
             {
                 BBToolModel *model = [toolModelsArray objectAtIndex:indexPath.row];

@@ -22,7 +22,7 @@
     [_dateLabel release];
     [_deleteButton release];
     [_optionView release];
-    [_recordDetailDic release];
+    [_recordDetailClass release];
     [_deleteRequest clearDelegatesAndCancel];
     [_deleteRequest release];
     [_loadProgress release];
@@ -71,7 +71,8 @@
     [self.navigationItem setRightBarButtonItem:commitBarButton];
     [commitBarButton release];
     
-    NSString *dateTS = [self.recordDetailDic stringForKey:@"publish_ts"];
+//    NSString *dateTS = [self.recordDetailDic stringForKey:@"publish_ts"];
+    NSString *dateTS = self.recordDetailClass.publish_ts;
     NSDate *publishDate = [NSDate dateWithTimeIntervalSince1970:[dateTS doubleValue]];
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]autorelease];
     [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
@@ -87,10 +88,12 @@
     [self.pictureView setHidden:YES];
     [self.contentLabel setHidden:YES];
     
-    if([[self.recordDetailDic stringForKey:@"text"] isNotEmpty])
+//    if([[self.recordDetailDic stringForKey:@"text"] isNotEmpty])
+    if([self.recordDetailClass.text isNotEmpty])
     {
         [self.contentLabel setHidden:NO];
-        NSString *contentString = [self.recordDetailDic stringForKey:@"text"];
+//        NSString *contentString = [self.recordDetailDic stringForKey:@"text"];
+        NSString *contentString = self.recordDetailClass.text;
         CGSize size = [BBAutoCalculationSize autoCalculationSizeRect:CGSizeMake(296.0, MAXFLOAT) withFont:[UIFont systemFontOfSize:16.0f] withString:contentString];
         self.contentLabel.text = contentString;
         [self.contentLabel setFrame:CGRectMake(13.0, 48.0, 296.0, size.height)];
@@ -98,10 +101,11 @@
         [self.contentLabel setFrame:CGRectMake(13.0, 0, 0, 0)];
     }
 
-    if([[self.recordDetailDic stringForKey:@"img_middle"] isNotEmpty])
+//    if([[self.recordDetailDic stringForKey:@"img_middle"] isNotEmpty])
+    if([self.recordDetailClass.img_middle isNotEmpty])
     {
         [self.pictureView setHidden:NO];
-        NSURL *url = [NSURL URLWithString:[self.recordDetailDic stringForKey:@"img_middle"]];
+        NSURL *url = [NSURL URLWithString:self.recordDetailClass.img_middle];
         [self.recordImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"topicPictureDefault"] options:0];
         if(self.contentLabel.hidden)
         {
@@ -115,14 +119,14 @@
 
     
     if (self.isSquare) {
-        if (![[self.recordDetailDic stringForKey:@"enc_user_id"] isEqualToString:[BBUser getEncId]]) {
+        if (![self.recordDetailClass.enc_user_id isEqualToString:[BBUser getEncId]]) {
             [self.optionView setHidden:YES];
         }else{
             self.isPrivate = NO;
             [self.privateButton setImage:[UIImage imageNamed:@"recordprivate"] forState:UIControlStateNormal];
         }
     }else{
-        if ([[self.recordDetailDic stringForKey:@"is_private"] isEqualToString:@"yes"]) {
+        if ([self.recordDetailClass.is_private isEqualToString:@"yes"]) {
             self.isPrivate = YES;
         }else{
             self.isPrivate = NO;
@@ -159,9 +163,6 @@
     }
     self.loadProgress = [[[MBProgressHUD alloc] initWithView:self.view] autorelease];
     [self.view addSubview:self.loadProgress];
-    
-    self.deleteButton.exclusiveTouch = YES;
-    self.privateButton.exclusiveTouch = YES;
 }
 
 -(IBAction)backAction:(id)sender
@@ -278,7 +279,7 @@
             [self.loadProgress setLabelText:@"正在删除..."];
             [self.loadProgress show:YES];
             [self.deleteRequest clearDelegatesAndCancel];
-            self.deleteRequest = [BBRecordRequest deleteRecord:[self.recordDetailDic stringForKey:@"mood_id"]];
+            self.deleteRequest = [BBRecordRequest deleteRecord:self.recordDetailClass.mood_id];
             [self.deleteRequest setDidFinishSelector:@selector(deleteRecordFinish:)];
             [self.deleteRequest setDidFailSelector:@selector(deleteRecordFail:)];
             [self.deleteRequest setDelegate:self];
@@ -305,8 +306,8 @@
     if ([[submitTopicData stringForKey:@"status"] isEqualToString:@"success"])
     {
         [self.loadProgress hide:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_PARK_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[self.recordDetailDic stringForKey:@"mood_id"],@"mood_id", nil]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_MOON_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[self.recordDetailDic stringForKey:@"mood_id"],@"mood_id", nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_PARK_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.recordDetailClass.mood_id,@"mood_id", nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_MOON_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.recordDetailClass.mood_id,@"mood_id", nil]];
         [self.navigationController popViewControllerAnimated:YES];
 
     }
@@ -339,7 +340,7 @@
     }
     
     [self.privateRequest clearDelegatesAndCancel];
-    self.privateRequest = [BBRecordRequest setRecordPrivate:strPrivate withRecodID:[self.recordDetailDic stringForKey:@"mood_id"]];
+    self.privateRequest = [BBRecordRequest setRecordPrivate:strPrivate withRecodID:self.recordDetailClass.mood_id];
     [self.privateRequest setDidFinishSelector:@selector(privateRecordFinish:)];
     [self.privateRequest setDidFailSelector:@selector(privateRecordFail:)];
     [self.privateRequest setDelegate:self];
@@ -375,8 +376,8 @@
             [self.privateButton setImage:[UIImage imageNamed:@"recordprivate"] forState:UIControlStateNormal];
             priStr = @"yes";
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_PARK_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[self.recordDetailDic stringForKey:@"mood_id"],@"mood_id", priStr, @"is_private", nil]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_MOON_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[self.recordDetailDic stringForKey:@"mood_id"],@"mood_id", priStr, @"is_private", nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_PARK_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.recordDetailClass.mood_id,@"mood_id", priStr, @"is_private", nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UPADATE_RECORD_MOON_VIEW object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.recordDetailClass.mood_id,@"mood_id", priStr, @"is_private", nil]];
     }
     else
     {
@@ -397,7 +398,7 @@
 {
     if (self.recordImage.image != nil) {
         [BBCacheData setCurrentTitle:@" "];
-        NSString *photoUrl=[self.recordDetailDic stringForKey:@"img_big"];
+        NSString *photoUrl=self.recordDetailClass.img_big;
         CGRect rect = [self.pictureView  convertRect:self.pictureView.bounds toView:self.view];
         PicReviewView *pView = [[[PicReviewView alloc] initWithRect:rect placeholderImage:self.recordImage.image] autorelease];
         pView.shareTypeMark = BBShareTypeRecord;

@@ -101,7 +101,6 @@
     if (IS_IPHONE5) {
         [datePickerView setFrame:CGRectMake(datePickerView.frame.origin.x, datePickerView.frame.origin.y + 88, datePickerView.frame.size.width, datePickerView.frame.size.height)];
     }
-    self.datePickerButton.exclusiveTouch = YES;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -278,8 +277,7 @@
     [self showProgressWithTitle:@"保存中..."];
     NSDate *newDate = dueDatePicker.date;
     [self.dueDateRequest clearDelegatesAndCancel];
-    NSString *babyStatus = [BBPregnancyInfo clientStatusOfUserRoleState:BBUserRoleStateHasBaby];
-    self.dueDateRequest = [BBUserRequest modifyUserDueDate:newDate changeToStatus:babyStatus];
+    self.dueDateRequest = [BBUserRequest modifyUserDueDate:newDate];
     [self.dueDateRequest setDidFinishSelector:@selector(synchronizeDueDateFinish:)];
     [self.dueDateRequest setDidFailSelector:@selector(synchronizeDueDateFail:)];
     [self.dueDateRequest setDelegate:self];

@@ -97,7 +97,7 @@
         self.changeLabel.text = [formatter stringFromDate:self.date];
         [self.chengeButton setTitle:@"周视图" forState:UIControlStateNormal];
     }
-    self.chengeButton.exclusiveTouch = YES;
+
     
     IPHONE5_ADAPTATION
     if (IS_IPHONE5)

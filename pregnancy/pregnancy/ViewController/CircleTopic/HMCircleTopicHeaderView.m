@@ -202,7 +202,6 @@
             circleTopicView.m_LineNotShow = (i == self.m_TopicArray.count - 1) ? YES : NO;
             UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCircleTopicView:)];
             [circleTopicView addGestureRecognizer:ges];
-            circleTopicView.exclusiveTouch = YES;
             [self.m_TopicImgView addSubview:circleTopicView];
             [circleTopicView loadData];
 

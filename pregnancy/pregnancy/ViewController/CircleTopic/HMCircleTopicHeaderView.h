@@ -28,10 +28,6 @@
 
 @property (nonatomic, strong) NSArray *m_TopicArray;
 
-@property (nonatomic, strong) NSString *m_CircleId;
-
-@property (nonatomic, strong) NSString *m_HospitalId;
-
 - (void)freshData;
 
 - (void)changeJoinBtnStyle:(BOOL)isJoin;

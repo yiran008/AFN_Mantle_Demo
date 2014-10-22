@@ -219,8 +219,6 @@
     [singleTapGR release];
     [doubleTapGR release];
     
-    m_ScrollView.exclusiveTouch = YES;
-    
     /*
     UILongPressGestureRecognizer *lpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     lpress.minimumPressDuration = 0.5;

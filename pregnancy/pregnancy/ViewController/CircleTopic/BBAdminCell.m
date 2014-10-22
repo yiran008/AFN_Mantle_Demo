@@ -43,9 +43,9 @@
     if([adminObj.m_UserName isNotEmpty])
     {
         CGSize userNameSize = [adminObj.m_UserName sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(MAXFLOAT, 21) lineBreakMode:NSLineBreakByCharWrapping];
-        if (userNameSize.width > 120)
+        if (userNameSize.width > 160)
         {
-            self.m_NameLabel.width = 120;
+            self.m_NameLabel.width = 160;
         }
         else
         {

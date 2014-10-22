@@ -18,7 +18,7 @@
     [_timeBgImageView release];
     [_thatAgeLabel release];
     [_createTsLabel release];
-    [_data release];
+    [_theCurrentClass release];
     [super dealloc];
 }
 
@@ -36,10 +36,10 @@
     [super setSelected:selected animated:animated];
 
 }
-- (void)setCellWithData:(NSDictionary *)dataDic
+- (void)setCellWithData:(BBRecordClass *)theClass
 {
-    self.data = dataDic;
-    if ([dataDic stringForKey:@"date"] == nil) {
+    self.theCurrentClass = theClass;
+    if (self.theCurrentClass.date == nil) {
         self.pointImageView.top = 28;
         [self.contentBgImageView setHidden:NO];
         [self.titleLabel setHidden:NO];
@@ -51,7 +51,7 @@
         [self.pointImageView setImage:[UIImage imageNamed:@"recordMoonPoint2"]];
         
         
-        NSString *content=[dataDic stringForKey:@"text"];
+        NSString *content=theClass.text;
         NSInteger height = 0;
         if (content==nil) {
             content = @"";
@@ -68,7 +68,7 @@
         self.titleLabel.height = height+2;
         [self.titleLabel setText:contentStl];
         
-        if ([dataDic stringForKey:@"img_middle"]!=nil && ![[dataDic stringForKey:@"img_middle"]isEqualToString:@""]) {
+        if ([theClass.img_middle isNotEmpty]) {
             [self.photoButton setHidden:NO];
             if (content==nil || [content isEqualToString:@""]) {
                 self.photoButton.top = 30;
@@ -77,7 +77,7 @@
                 self.photoButton.top = 30+height+10;
                 height += 190;
             }
-            [self.photoButton setImageWithURL:[NSURL URLWithString:[dataDic stringForKey:@"img_middle"]] placeholderImage:nil];
+            [self.photoButton setImageWithURL:[NSURL URLWithString:theClass.img_middle] placeholderImage:nil];
             
         }else{
             [self.photoButton setHidden:YES];
@@ -94,17 +94,18 @@
         [self.thatAgeLabel setHidden:NO];
         [self.createTsLabel setHidden:NO];
         
-        [self.thatAgeLabel setText:[dataDic stringForKey:@"that_time_age"]];
-        [self.createTsLabel setText:[dataDic stringForKey:@"date"]];
+        [self.thatAgeLabel setText:theClass.that_time_age];
+        [self.createTsLabel setText:theClass.date];
         [self.pointImageView setImage:[UIImage imageNamed:@"recordMoonPoint1"]];
+        
+        
     }
-    self.photoButton.exclusiveTouch = YES;
 }
 
 - (IBAction)photoEvent:(id)sender {
     if (self.photoButton.imageView.image != nil) {
         [BBCacheData setCurrentTitle:@" "];
-        NSString *photoUrl=[self.data stringForKey:@"img_big"];
+        NSString *photoUrl=self.theCurrentClass.img_big;
         CGRect rect = [self.photoButton  convertRect:self.photoButton.bounds toView:self.viewController.view ];
         PicReviewView *pView = [[[PicReviewView alloc] initWithRect:rect placeholderImage:self.photoButton.imageView.image] autorelease];
         pView.shareTypeMark = BBShareTypeRecord;
@@ -115,11 +116,11 @@
     }
 }
 
-+ (CGFloat) cellHeight:(NSDictionary *)dataDic
++ (CGFloat) cellHeight:(BBRecordClass *)theClass
 {
     NSInteger height = 0;
-    if ([dataDic stringForKey:@"date"] == nil) {
-        NSString *content=[dataDic stringForKey:@"text"];
+    if (theClass.date == nil) {
+        NSString *content=theClass.text;
         if (content==nil) {
             content = @"";
         }
@@ -132,7 +133,7 @@
         }else{
             height = 40;
         }
-        if ([dataDic stringForKey:@"img_middle"]!=nil && ![[dataDic stringForKey:@"img_middle"]isEqualToString:@""]) {
+        if ([theClass.img_middle isNotEmpty]) {
             if (content==nil || [content isEqualToString:@""]) {
                 height += 180-16;
             }else{

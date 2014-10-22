@@ -78,8 +78,6 @@
 
 + (NSString *)pregnanyClientAndStatus;
 
-+ (NSString*)clientStatusOfUserRoleState:(BBUserRoleState)userRoleState;
-
 + (NSString *)stringOfDate:(NSDate*)date format:(NSString*)format;
 
 + (NSDate *)dateOfString:(NSString*)dateStr format:(NSString*)format;

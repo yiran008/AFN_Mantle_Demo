@@ -91,8 +91,6 @@
     
     self.m_TimeLabel.text = [NSDate hmStringDateFromDate:m_DraftBoxData.m_Timetmp];
     self.m_TimeLabel.textColor = [UIColor colorWithHex:0xCCCCCC];
-    
-    self.m_delBtn.exclusiveTouch = YES;
 }
 
 

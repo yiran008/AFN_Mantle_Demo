@@ -76,7 +76,6 @@
         // add by DJ
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanForSelection:)];
 		[self.view addGestureRecognizer:pan];
-        self.view.exclusiveTouch = YES;
         // add end
     }
     

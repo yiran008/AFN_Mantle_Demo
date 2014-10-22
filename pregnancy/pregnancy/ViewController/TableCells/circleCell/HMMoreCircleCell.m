@@ -103,8 +103,6 @@
     self.m_CircleIntroLabel.text = self.m_CircleClass.circleIntro;
 
     [self freshCircleAddBtn:self.m_CircleClass.addStatus];
-    
-    self.m_CircleAddBtn.exclusiveTouch = YES;
 }
 
 

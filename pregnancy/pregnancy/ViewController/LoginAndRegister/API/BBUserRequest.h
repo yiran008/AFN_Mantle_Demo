@@ -21,8 +21,6 @@
 
 + (ASIFormDataRequest *)modifyUserDueDate:(NSDate *)theDueDate;
 
-+ (ASIFormDataRequest *)modifyUserDueDate:(NSDate *)theDueDate changeToStatus:(NSString*)babyStatus;
-
 + (ASIFormDataRequest *)statisticsDueDate:(NSDate *)theDueDate;
 
 + (ASIFormDataRequest *)pregnancyCookie;

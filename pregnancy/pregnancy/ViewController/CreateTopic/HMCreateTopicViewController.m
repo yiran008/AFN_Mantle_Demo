@@ -254,7 +254,6 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapRecognizer.cancelsTouchesInView = YES;
     [self.m_ScrollView addGestureRecognizer:tapRecognizer];
-    self.m_ScrollView.exclusiveTouch = YES;
 
     //m_ToolBarView.backgroundColor = [UIColor whiteColor];
     //m_ToolBarView.backgroundColor = [UIColor flatGrayColor];

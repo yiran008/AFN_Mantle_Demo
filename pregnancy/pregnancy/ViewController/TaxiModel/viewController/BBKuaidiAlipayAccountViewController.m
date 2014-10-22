@@ -78,7 +78,6 @@
     UITapGestureRecognizer *tapGr = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)]autorelease];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
-    self.view.exclusiveTouch = YES;
     
     self.progressBar = [[[MBProgressHUD alloc]initWithView:self.view]autorelease];
     [self.view addSubview:self.progressBar];

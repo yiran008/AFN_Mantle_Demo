@@ -169,19 +169,12 @@
     // 添加点击事件
     UITapGestureRecognizer *babyBrithdayTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editBabyBrithday:)];
     [self.babyBrithdayLabel addGestureRecognizer:babyBrithdayTap];
-    self.babyBrithdayLabel.userInteractionEnabled = YES;
-    self.babyBrithdayLabel.exclusiveTouch = YES;
     
     UITapGestureRecognizer *babyWeightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editBabyWeight:)];
     [self.babyWeightLabel addGestureRecognizer:babyWeightTap];
-    self.babyWeightLabel.userInteractionEnabled = YES;
-    self.babyWeightLabel.exclusiveTouch = YES;
     
     UITapGestureRecognizer *babyHeightTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editBabyHeight:)];
     [self.babyHeightLabel addGestureRecognizer:babyHeightTap];
-    self.babyHeightLabel.userInteractionEnabled = YES;
-    self.babyHeightLabel.exclusiveTouch = YES;
-
     
     self.boyButton.exclusiveTouch = YES;
     self.girlButton.exclusiveTouch = YES;

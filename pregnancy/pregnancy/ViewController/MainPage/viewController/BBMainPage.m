@@ -1509,6 +1509,12 @@
 
 }
 
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    NSArray *array = alertView.subviews;
+    NSLog(@"arrar %@",array);
+    return YES;
+}
 
 #pragma mark- Action Sheet Delegate
 
@@ -1758,7 +1764,7 @@
             [BBRemotePushInfo setIsRegisterPushToBabytree:YES];
             BBAppDelegate *appDelegate = (BBAppDelegate *)[[UIApplication sharedApplication] delegate];
             [appDelegate updatePushToken];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"您在网站上修改过密码，请重新登录" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alertView show];
         }

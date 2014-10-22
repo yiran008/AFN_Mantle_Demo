@@ -43,8 +43,6 @@
 
         UITapGestureRecognizer *adTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(adTapped:)];
         [self.remindImage addGestureRecognizer:adTap];
-        self.remindImage.userInteractionEnabled = YES;
-        self.remindImage.exclusiveTouch = YES;
     }
     self.remindImage.hidden = isHasImage?NO:YES;
     

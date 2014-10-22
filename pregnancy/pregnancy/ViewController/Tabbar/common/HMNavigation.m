@@ -171,7 +171,6 @@ static char TAG_BACKGROUNDVIEW_INDICATOR;
     if(aLSelector != nil)
     {
         UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        leftBtn.exclusiveTouch = YES;
         [leftBtn addTarget:self action:aLSelector forControlEvents:UIControlEventTouchUpInside];
         leftBtn.tag = NAV_LEFTBTN_TAG;
 
@@ -216,7 +215,7 @@ static char TAG_BACKGROUNDVIEW_INDICATOR;
     if (aRSelector != nil)
     {
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        rightBtn.exclusiveTouch = YES;
+
         [rightBtn addTarget:self action:aRSelector forControlEvents:UIControlEventTouchUpInside];
         
         rightBtn.tag = NAV_RIGHTBTN_TAG;
@@ -342,8 +341,7 @@ static char TAG_BACKGROUNDVIEW_INDICATOR;
     if(aLSelector != nil)
     {
         UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        leftBtn.exclusiveTouch = YES;
-//
+//        
 //        if (IOS_VERSION >= 7.0)
 //        {
 //            lBImage = [NSString stringWithFormat:@"%@_ios7",lBImage];
@@ -390,7 +388,6 @@ static char TAG_BACKGROUNDVIEW_INDICATOR;
             SEL aRSelector = NSSelectorFromString([dic objectForKey:NAV_RIGHTBTN_SELECTOR_KEY]);
             
             UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            rightBtn.exclusiveTouch = YES;
             UIImage *image = [UIImage imageNamed:rBImage];
             CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
             rightBtn.Frame = frame;

@@ -129,7 +129,6 @@ typedef enum
     
     UIView *gestureView = [self.view viewWithTag:10001];
     [gestureView addGestureRecognizer:tapGr];
-    gestureView.exclusiveTouch = YES;
     
     self.photoType = @"1";
     
@@ -146,9 +145,6 @@ typedef enum
     }
     
     [self setTaxiPartner];
-    
-    self.pregnanyImageButton.exclusiveTouch = YES;
-    self.submitButton.exclusiveTouch = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -303,7 +299,6 @@ typedef enum
             tapPhotoType.cancelsTouchesInView = NO;
             [self.pregnancyIDSelector addGestureRecognizer:tapPhotoType];
             self.pregnancyIDSelector.userInteractionEnabled = YES;
-            self.pregnancyIDSelector.exclusiveTouch = YES;
             
             [self.submitButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
             [self.pregnanyImageButton addTarget:self action:@selector(startCamera:) forControlEvents:UIControlEventTouchUpInside];

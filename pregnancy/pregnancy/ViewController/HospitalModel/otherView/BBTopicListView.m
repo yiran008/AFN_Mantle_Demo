@@ -90,7 +90,6 @@
             EGORefreshPullUpTableHeaderView *pullUpView = [[EGORefreshPullUpTableHeaderView alloc] initWithFrame: CGRectMake(0.0, self.frame.size.height+2000, self.frame.size.width, self.frame.size.height)];
             pullUpView.delegate = self;
             [tableView addSubview:pullUpView];
-            pullUpView.backgroundColor = [UIColor clearColor];
             _refresh_pull_up_header_view = pullUpView;
             [pullUpView release];
         }

@@ -33,8 +33,6 @@
 
 @property (nonatomic, strong) ASIFormDataRequest *s_DeleteMessageRequest;
 
-@property (nonatomic, strong) ASIFormDataRequest *s_GetMessageAloneRequest;
-
 @property (strong, nonatomic) IBOutlet UIImageView *s_TopBgView;
 
 @property (nonatomic,strong) NSMutableArray *s_MessageArray;
@@ -210,16 +208,6 @@
     //iphone5适配
     IPHONE5_ADAPTATION
     [self bringSomeViewToFront];
-    if (self.m_CurrentMessageListType != BBMessageListTypeMessage)
-    {
-        //为了获取私信小红点，另起一个请求获取私信数据，该请求获取的数据会根据情况缓存
-        [_s_GetMessageAloneRequest clearDelegatesAndCancel];
-        _s_GetMessageAloneRequest  = [BBMessageRequest userChatUserList];
-        [_s_GetMessageAloneRequest setDelegate:self];
-        [_s_GetMessageAloneRequest setDidFinishSelector:@selector(messageListAloneRequestFinished:)];
-        [_s_GetMessageAloneRequest setDidFailSelector:@selector(messageListAloneRequestFailed:)];
-        [_s_GetMessageAloneRequest startAsynchronous];
-    }
     [self freshData];
 }
 
@@ -246,7 +234,6 @@
 {
     [_s_LoadDataRequest clearDelegatesAndCancel];
     [_s_DeleteMessageRequest clearDelegatesAndCancel];
-    [_s_GetMessageAloneRequest clearDelegatesAndCancel];
 }
 
 
@@ -348,7 +335,6 @@
     }
     else if (self.m_CurrentMessageListType == BBMessageListTypeMessage)
     {
-        [_s_GetMessageAloneRequest clearDelegatesAndCancel];
     }
     else
     {
@@ -628,9 +614,9 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSError *error = nil;
     NSDictionary *dictData = [parser objectWithString:responseString error:&error];
-    if (error)
+    if (error != nil)
     {
-        if (self.s_FeedArray.count == 0)
+        if (self.s_NoticeArray.count == 0)
         {
             [self changeNoDataViewWithHiddenStatus:NO withType:HMNODATAVIEW_DATAERROR];
         }
@@ -727,7 +713,7 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSError *error = nil;
     NSDictionary *submitReplyData = [parser objectWithString:responseString error:&error];
-    if (error)
+    if (error != nil)
     {
         if (self.s_NoticeArray.count == 0)
         {
@@ -783,39 +769,6 @@
         [self changeNoDataViewWithHiddenStatus:NO withType:HMNODATAVIEW_NETERROR];
     }
 }
-#pragma mark- Message Alone Request Delegate
-
-- (void)messageListAloneRequestFinished:(ASIFormDataRequest *)request
-{
-    NSString *responseString = [request responseString];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSError *error = nil;
-    NSDictionary *responseData = [parser objectWithString:responseString error:&error];
-    if (error)
-    {
-        return;
-    }
-    NSString *status =[responseData stringForKey:@"status"] ;
-    if ([status isEqualToString:@"success"])
-    {
-        [BBUser setUserUnreadSiXinCount:0];
-        @synchronized(self.s_MessageArray)
-        {
-            if ([self.s_MessageArray count] == 0)
-            {
-                //如果还没有缓存数据，将该请求的数据作为缓存数据，否则不做任何操作
-                self.s_MessageArray =[NSMutableArray arrayWithArray:[[responseData dictionaryForKey:@"data"]arrayForKey:@"list"]];
-                [self updateUnreadMessagePointStatus];
-            }
-        }
-    }
-}
-
-- (void)messageListAloneRequestFailed:(ASIFormDataRequest *)request
-{
-    
-}
-
 
 #pragma mark- Message Request Delegate
 
@@ -831,16 +784,8 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSError *error = nil;
     NSDictionary *responseData = [parser objectWithString:responseString error:&error];
-    if (error)
+    if (error != nil)
     {
-        if (self.s_MessageArray.count == 0)
-        {
-            [self changeNoDataViewWithHiddenStatus:NO withType:HMNODATAVIEW_DATAERROR];
-        }
-        else if ([self isVisible])
-        {
-            [PXAlertView showAlertWithTitle:@"网络获取数据错误"];
-        }
         return;
     }
     NSString *status =[responseData stringForKey:@"status"] ;

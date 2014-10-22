@@ -75,15 +75,29 @@
 
 - (IBAction)backAction:(id)sender
 {
-    if(self.presentingViewController)
+    BBAppDelegate *appDelegate = (BBAppDelegate *)[UIApplication sharedApplication].delegate;
+    if(appDelegate.m_bobyBornFinish)
     {
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        // 跳转到我的圈
+        for (UINavigationController *nav in self.navigationController.viewControllers)
+        {
+            [nav dismissViewControllerAnimated:NO completion:^{
+                
+            }];
+        }
+
+        if (!appDelegate.m_mainTabbar)
+        {
+            appDelegate.m_mainTabbar = [[BBMainTabBar alloc]init];
+        }
+        [appDelegate.m_mainTabbar addViewControllers];
+        [appDelegate.m_mainTabbar selectedTabWithIndex:1];
+        appDelegate.window.rootViewController = appDelegate.m_mainTabbar;
+        appDelegate.m_bobyBornFinish = NO;
     }
     else
     {
-        [self.navigationController popViewControllerAnimated:YES];
+       [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

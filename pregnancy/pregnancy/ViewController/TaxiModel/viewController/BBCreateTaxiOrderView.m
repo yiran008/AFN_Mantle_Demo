@@ -131,7 +131,6 @@
         [cancelAlertbutton setTitle:@"不，谢谢" forState:UIControlStateNormal];
         [cancelAlertbutton addTarget:self action:@selector(cancelAlertGrey:) forControlEvents:UIControlEventTouchUpInside];
         self.callbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.callbutton.exclusiveTouch = YES;
         [self.callbutton setFrame:CGRectMake(136, 98, 108, 36)];
         [self.callbutton setBackgroundImage:[UIImage imageNamed:@"taxi_red_button"] forState:UIControlStateNormal];
         [self.callbutton setBackgroundImage:[UIImage imageNamed:@"taxi_red_button"] forState:UIControlStateHighlighted];

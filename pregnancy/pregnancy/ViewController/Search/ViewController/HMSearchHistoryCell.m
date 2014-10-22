@@ -30,7 +30,6 @@
         [self.contentView addSubview:contentLabel];
         
         self.deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.deleteButton.exclusiveTouch = YES;
         self.deleteButton.frame = CGRectMake(280, 5, 40, 30);
         [self.deleteButton setImage:[UIImage imageNamed:@"search_delete"] forState:UIControlStateNormal];
         [self.deleteButton addTarget:self action:@selector(deleteHistory:) forControlEvents:UIControlEventTouchUpInside];

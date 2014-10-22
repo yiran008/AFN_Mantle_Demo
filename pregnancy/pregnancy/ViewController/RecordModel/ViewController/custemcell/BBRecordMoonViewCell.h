@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBRecordClass.h"
 
 @interface BBRecordMoonViewCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UIImageView *pointImageView;
@@ -16,10 +17,10 @@
 @property (retain, nonatomic) IBOutlet UIImageView *timeBgImageView;
 @property (retain, nonatomic) IBOutlet UILabel *thatAgeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *createTsLabel;
-@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) BBRecordClass *theCurrentClass;
 
-- (void)setCellWithData:(NSDictionary *)dataDic;
+- (void)setCellWithData:(BBRecordClass *)theClass;
 - (IBAction)photoEvent:(id)sender;
-+ (CGFloat) cellHeight:(NSDictionary *)dataDic;
++ (CGFloat) cellHeight:(BBRecordClass *)theClass;
 
 @end

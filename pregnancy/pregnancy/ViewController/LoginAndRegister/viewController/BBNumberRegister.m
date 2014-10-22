@@ -25,7 +25,6 @@
 #import "BBValidateUtility.h"
 #import "MobClick.h"
 #import "GTMBase64.h"
-#import "BBSupportTopicDetail.h"
 
 @interface BBNumberRegister ()
 {
@@ -88,11 +87,8 @@
     [self.againButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [self.againButton setEnabled:YES];
     [self.registerButton setEnabled:YES];
-    
     self.againButton.exclusiveTouch = YES;
     self.registerButton.exclusiveTouch = YES;
-    self.validateButton.exclusiveTouch = YES;
-    self.finishButton.exclusiveTouch = YES;
 
 }
 
@@ -128,13 +124,6 @@
         NSString *str = [NSString stringWithFormat:@"重新获取验证码(%d)",paramTimer];
         [self.againButton setTitle:str forState:UIControlStateDisabled];
     }
-}
-- (IBAction)privacyAction:(id)sender {
-    BBSupportTopicDetail *exteriorURL = [[BBSupportTopicDetail alloc] initWithNibName:@"BBSupportTopicDetail" bundle:nil];
-    exteriorURL.isShowCloseButton = NO;
-    exteriorURL.title = @"隐私政策";
-    [exteriorURL setLoadURL:@"http://www.babytree.com/app/privacy.html"];
-    [self.navigationController pushViewController:exteriorURL animated:NO];
 }
 
 
@@ -507,7 +496,7 @@
             [BBUser setBandFatherStatus:NO];
         }
         
-//        [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
         //[BBUser setCheckDueDateStatus:YES];
         [BBUser setNeedSynchronizeDueDate:NO];
         [BBUser setNeedSynchronizeStatisticsDueDate:YES];

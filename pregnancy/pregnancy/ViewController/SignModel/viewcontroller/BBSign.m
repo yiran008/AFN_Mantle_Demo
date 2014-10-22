@@ -417,19 +417,6 @@
 {
     if(buttonIndex && [_urlDic isDictionaryAndNotEmpty] && [[_urlDic stringForKey:@"url_type"] isNotEmpty])
     {
-        if ([BBUser getNewUserRoleState] == BBUserRoleStatePrepare)
-        {
-            [MobClick event:@"checkin_pregnant_v2" label:@"活动弹层跳转按钮点击次数"];
-        }
-        else if([BBUser getNewUserRoleState] == BBUserRoleStateHasBaby)
-        {
-            [MobClick event:@"checkin_baby_v2" label:@"活动弹层跳转按钮点击次数"];
-        }
-        else
-        {
-            [MobClick event:@"checkin_prepare_v2" label:@"活动弹层跳转按钮点击次数"];
-        }
-
         if([[_urlDic stringForKey:@"url_type"] intValue] == 2)
         {
             if([[_urlDic stringForKey:@"btn_url"] isNotEmpty])

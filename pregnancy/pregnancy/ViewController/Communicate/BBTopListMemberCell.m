@@ -38,7 +38,7 @@
     [self.m_AvtarImage setImageWithURL:[NSURL URLWithString:memberObj.m_UserAvatar] placeholderImage:[UIImage imageNamed:@"personal_default_avatar"]];
     if([memberObj.m_UserName isNotEmpty])
     {
-        [self setCellViewFrame:self.m_NameLabel withLabelText:memberObj.m_UserName withMAXWidth:160 withFont:[UIFont systemFontOfSize:14.0]];
+        [self setCellViewFrame:self.m_NameLabel withLabelText:memberObj.m_UserName withMAXWidth:200 withFont:[UIFont systemFontOfSize:14.0]];
         self.m_NameLabel.text = memberObj.m_UserName;
     }
     else
@@ -66,7 +66,7 @@
     if ([memberObj.m_Contribution isNotEmpty])
     {
         NSString *str = [NSString stringWithFormat:@"周贡献: %@",memberObj.m_Contribution];
-        [self setCellViewFrame:self.m_ContributionLabel withLabelText:str withMAXWidth:160 withFont:[UIFont systemFontOfSize:12.0]];
+        [self setCellViewFrame:self.m_ContributionLabel withLabelText:str withMAXWidth:200 withFont:[UIFont systemFontOfSize:12.0]];
         self.m_ContributionLabel.text = str;
         self.m_AdressLabel.top = 50;
         self.m_PregnancyLabel.top = 50;

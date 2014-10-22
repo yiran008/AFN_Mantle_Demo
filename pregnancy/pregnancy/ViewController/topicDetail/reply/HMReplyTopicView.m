@@ -315,7 +315,7 @@
 - (void)updateSendButtonState
 {
     UIButton *button = (UIButton *)[self viewWithTag:800];
-    if ([[contentTextView.text trim] isNotEmpty])
+    if ([[contentTextView.text trim] isNotEmpty] || self.m_cacheImageData)
     {
         [button setTitleColor:[UIColor colorWithHex:0x666666] forState:UIControlStateNormal];
         button.userInteractionEnabled = YES;
@@ -370,7 +370,7 @@
     {
         self.m_cacheContent = contentTextView.text;
 
-        if (![[self.m_cacheContent trim] isNotEmpty])
+        if (![[self.m_cacheContent trim] isNotEmpty] && !self.m_cacheImageData)
         {
             [PXAlertView showAlertWithTitle:@"发送内容不能为空"];
             return;
@@ -380,7 +380,7 @@
     {
         self.m_cacheContent = contentTextView.text;
 
-        if (![[self.m_cacheContent trim] isNotEmpty])
+        if (![[self.m_cacheContent trim] isNotEmpty] && !self.m_cacheImageData)
         {
             [PXAlertView showAlertWithTitle:@"发送内容不能为空"];
             return;

@@ -52,7 +52,6 @@
         self.userInteractionEnabled = YES;
         UITapGestureRecognizer *adTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(adTapped:)];
         [self addGestureRecognizer:adTap];
-        self.exclusiveTouch = YES;
 
     }
     return self;

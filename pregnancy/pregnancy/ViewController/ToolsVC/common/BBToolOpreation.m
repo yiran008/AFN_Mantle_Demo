@@ -407,7 +407,6 @@
     }
     else if([tool.type isEqualToString:TOOL_TYPE_MUSIC])
     {
-        
         [MobClick event:@"tool_v2" label:@"胎教音乐"];
         if ([BBUser isLogin]) {
             BBMusicTypeListController *musicList = [[BBMusicTypeListController alloc] init];

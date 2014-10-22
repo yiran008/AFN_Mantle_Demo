@@ -116,7 +116,6 @@
     scrollView.contentSize = CGSizeMake(320*self.s_GuidePages+1, 568);
     
     UIButton *startButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    startButton.exclusiveTouch = YES;
     startButton.backgroundColor = [UIColor clearColor];
     [startButton setImage:[UIImage imageNamed:@"guide_arrow"] forState:UIControlStateNormal];
     [startButton setFrame:CGRectMake(320*self.s_GuidePages - 42 , DEVICE_HEIGHT - 56, 32, 20)];

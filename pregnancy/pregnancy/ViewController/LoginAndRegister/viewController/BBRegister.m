@@ -19,7 +19,6 @@
 #import "BBPasteboardTool.h"
 #import "BBCookie.h"
 #import "BBTermsOfUse.h"
-#import "BBSupportTopicDetail.h"
 
 @implementation BBRegister
 
@@ -85,7 +84,6 @@
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
     [panRecognizer setDelegate:self];
     [self.view addGestureRecognizer:panRecognizer];
-    self.view.exclusiveTouch = YES;
     [self.registerButton setEnabled:YES];
     self.registerButton.exclusiveTouch = YES;
     IPHONE5_ADAPTATION
@@ -130,13 +128,6 @@
     [UIView setAnimationDuration:0.25];
     [movableView setFrame:CGRectMake(0, 0, 320, 416)];
     [UIView commitAnimations];
-}
-- (IBAction)pirvacyAction:(id)sender {
-    BBSupportTopicDetail *exteriorURL = [[BBSupportTopicDetail alloc] initWithNibName:@"BBSupportTopicDetail" bundle:nil];
-    exteriorURL.isShowCloseButton = NO;
-    exteriorURL.title = @"隐私政策";
-    [exteriorURL setLoadURL:@"http://www.babytree.com/app/privacy.html"];
-    [self.navigationController pushViewController:exteriorURL animated:NO];
 }
 
 - (IBAction)registerAction:(id)sender
@@ -222,7 +213,7 @@
         BBAppDelegate *appDelegate = (BBAppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate pregnancyCookieInfo];
         
-//        [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DIDCHANGE_CIRCLE_LOGIN_STATE object:nil];
         [MobClick event:@"sign_in_up_v2" label:@"成功注册总次数"];
 
         if (![BBUser isBandFatherStatus])

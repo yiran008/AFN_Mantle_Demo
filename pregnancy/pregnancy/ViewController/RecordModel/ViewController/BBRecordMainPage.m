@@ -9,6 +9,7 @@
 #import "BBRecordMainPage.h"
 #import "BBPublishRecord.h"
 #import "BBCustemSegment.h"
+#import "BBRecordClass.h"
 
 @interface BBRecordMainPage ()
 
@@ -184,7 +185,8 @@
 -(void)deleteRecordTableViewData:(NSMutableArray*)sourceArray withDeleteMoodID:(NSString*)deleteMoodID{
     if ([sourceArray count]>0) {
         for (int i=0; i<[sourceArray count]; i++) {
-            if ([[[sourceArray objectAtIndex:i] stringForKey:@"mood_id"]isEqualToString:deleteMoodID]) {
+            BBRecordClass *theClass =[sourceArray objectAtIndex:i];
+            if ([theClass.mood_id isEqualToString:deleteMoodID]) {
                 [sourceArray removeObjectAtIndex:i];
                 break;
             }
