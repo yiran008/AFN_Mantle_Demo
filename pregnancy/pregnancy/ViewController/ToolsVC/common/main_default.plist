@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>column_count</key>
+	<string>4</string>
+	<key>tool_list</key>
+	<array>
+		<dict>
+			<key>badge_count</key>
+			<string>0</string>
+			<key>img</key>
+			<string></string>
+			<key>name</key>
+			<string>知识库</string>
+			<key>type</key>
+			<string>2</string>
+		</dict>
+		<dict>
+			<key>badge_count</key>
+			<string>0</string>
+			<key>img</key>
+			<string></string>
+			<key>name</key>
+			<string>孕育问答</string>
+			<key>type</key>
+			<string>6</string>
+		</dict>
+		<dict>
+			<key>badge_count</key>
+			<string>0</string>
+			<key>img</key>
+			<string></string>
+			<key>name</key>
+			<string>专家在线</string>
+			<key>type</key>
+			<string>0</string>
+			<key>url</key>
+			<string>http://m.babytree.com/promo/expert_online.php?from=app&amp;&amp;title=专家在线</string>
+		</dict>
+		<dict>
+			<key>badge_count</key>
+			<string>0</string>
+			<key>img</key>
+			<string></string>
+			<key>name</key>
+			<string>孕期热线</string>
+			<key>type</key>
+			<string>0</string>
+			<key>url</key>
+			<string>http://r.babytree.com/wlywgq&amp;&amp;title=孕期专业呵护热线</string>
+		</dict>
+	</array>
+</dict>
+</plist>
