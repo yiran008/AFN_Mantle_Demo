@@ -130,15 +130,10 @@
 			children = (
 				5F163AA519F79BE50026080B /* AppDelegate.h */,
 				5F163AA619F79BE50026080B /* AppDelegate.m */,
-				5F4361FA19F7B59700B6F3B4 /* SearchResultViewController.h */,
-				5F4361FB19F7B59700B6F3B4 /* SearchResultViewController.m */,
-				5F3240A919F8A8D9004E994E /* OVCHTTPRequestOperationManager.h */,
-				5F3240AA19F8A8D9004E994E /* OVCHTTPRequestOperationManager.m */,
-				5F3240AC19F8B091004E994E /* SResultModel.h */,
-				5F3240AD19F8B091004E994E /* SResultModel.m */,
-				5F4361F719F7AC9800B6F3B4 /* UserModel.h */,
-				5F4361F819F7AC9800B6F3B4 /* UserModel.m */,
 				5F163AA819F79BE50026080B /* Main.storyboard */,
+				5F3240B119F8E04F004E994E /* Network */,
+				5F3240B019F8E035004E994E /* VC */,
+				5F3240AF19F8E022004E994E /* Model */,
 				5F163AAE19F79BE50026080B /* Images.xcassets */,
 				5F163A9D19F79BE50026080B /* Supporting Files */,
 			);
@@ -172,6 +167,35 @@
 				5F163ABE19F79BE50026080B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F3240AF19F8E022004E994E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F3240AC19F8B091004E994E /* SResultModel.h */,
+				5F3240AD19F8B091004E994E /* SResultModel.m */,
+				5F4361F719F7AC9800B6F3B4 /* UserModel.h */,
+				5F4361F819F7AC9800B6F3B4 /* UserModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5F3240B019F8E035004E994E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5F4361FA19F7B59700B6F3B4 /* SearchResultViewController.h */,
+				5F4361FB19F7B59700B6F3B4 /* SearchResultViewController.m */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		5F3240B119F8E04F004E994E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5F3240A919F8A8D9004E994E /* OVCHTTPRequestOperationManager.h */,
+				5F3240AA19F8A8D9004E994E /* OVCHTTPRequestOperationManager.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		DF850E90ED35559A6159EFFB /* Pods */ = {
