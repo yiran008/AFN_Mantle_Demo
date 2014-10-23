@@ -468,13 +468,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E60833187DB37EE6EAD31DC /* Pods.debug.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "afn_mantle_overcoat/afn_mantle_overcoat-Prefix.pch";
 				INFOPLIST_FILE = "afn_mantle_overcoat/afn_mantle_overcoat-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -485,13 +486,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83203A0AE148A5618EBCBF80 /* Pods.release.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "afn_mantle_overcoat/afn_mantle_overcoat-Prefix.pch";
 				INFOPLIST_FILE = "afn_mantle_overcoat/afn_mantle_overcoat-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
