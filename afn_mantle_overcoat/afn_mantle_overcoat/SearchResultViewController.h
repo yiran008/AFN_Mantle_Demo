@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SearchResultViewController.h
 //  afn_mantle_overcoat
 //
 //  Created by liumiao on 10/22/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface SearchResultViewController : UIViewController
 
 @end

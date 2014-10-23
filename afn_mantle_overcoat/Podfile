@@ -10,4 +10,5 @@ end
 target 'afn_mantle_overcoatTests' do
 
 end
-pod 'Overcoat', '~>2.0'
+pod "AFNetworking", "~> 2.0"
+pod "Mantle"

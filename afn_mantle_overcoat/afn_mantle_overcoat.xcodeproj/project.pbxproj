@@ -14,13 +14,16 @@
 		5F163AA319F79BE50026080B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F163AA219F79BE50026080B /* main.m */; };
 		5F163AA719F79BE50026080B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F163AA619F79BE50026080B /* AppDelegate.m */; };
 		5F163AAA19F79BE50026080B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F163AA819F79BE50026080B /* Main.storyboard */; };
-		5F163AAD19F79BE50026080B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F163AAC19F79BE50026080B /* ViewController.m */; };
 		5F163AAF19F79BE50026080B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F163AAE19F79BE50026080B /* Images.xcassets */; };
 		5F163AB619F79BE50026080B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F163AB519F79BE50026080B /* XCTest.framework */; };
 		5F163AB719F79BE50026080B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F163A9619F79BE50026080B /* Foundation.framework */; };
 		5F163AB819F79BE50026080B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F163A9A19F79BE50026080B /* UIKit.framework */; };
 		5F163AC019F79BE50026080B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F163ABE19F79BE50026080B /* InfoPlist.strings */; };
 		5F163AC219F79BE50026080B /* afn_mantle_overcoatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F163AC119F79BE50026080B /* afn_mantle_overcoatTests.m */; };
+		5F3240AB19F8A8D9004E994E /* OVCHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3240AA19F8A8D9004E994E /* OVCHTTPRequestOperationManager.m */; };
+		5F3240AE19F8B091004E994E /* SResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3240AD19F8B091004E994E /* SResultModel.m */; };
+		5F4361F919F7AC9800B6F3B4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4361F819F7AC9800B6F3B4 /* UserModel.m */; };
+		5F4361FC19F7B59700B6F3B4 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4361FB19F7B59700B6F3B4 /* SearchResultViewController.m */; };
 		A5AFBAEBD796136218090225 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18908AE5EDB89837E2034A10 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -48,14 +51,20 @@
 		5F163AA519F79BE50026080B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5F163AA619F79BE50026080B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5F163AA919F79BE50026080B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5F163AAB19F79BE50026080B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5F163AAC19F79BE50026080B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5F163AAE19F79BE50026080B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F163AB419F79BE50026080B /* afn_mantle_overcoatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = afn_mantle_overcoatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F163AB519F79BE50026080B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5F163ABD19F79BE50026080B /* afn_mantle_overcoatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "afn_mantle_overcoatTests-Info.plist"; sourceTree = "<group>"; };
 		5F163ABF19F79BE50026080B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5F163AC119F79BE50026080B /* afn_mantle_overcoatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = afn_mantle_overcoatTests.m; sourceTree = "<group>"; };
+		5F3240A919F8A8D9004E994E /* OVCHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVCHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		5F3240AA19F8A8D9004E994E /* OVCHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVCHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		5F3240AC19F8B091004E994E /* SResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SResultModel.h; sourceTree = "<group>"; };
+		5F3240AD19F8B091004E994E /* SResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SResultModel.m; sourceTree = "<group>"; };
+		5F4361F719F7AC9800B6F3B4 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		5F4361F819F7AC9800B6F3B4 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		5F4361FA19F7B59700B6F3B4 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		5F4361FB19F7B59700B6F3B4 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		83203A0AE148A5618EBCBF80 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,9 +130,15 @@
 			children = (
 				5F163AA519F79BE50026080B /* AppDelegate.h */,
 				5F163AA619F79BE50026080B /* AppDelegate.m */,
+				5F4361FA19F7B59700B6F3B4 /* SearchResultViewController.h */,
+				5F4361FB19F7B59700B6F3B4 /* SearchResultViewController.m */,
+				5F3240A919F8A8D9004E994E /* OVCHTTPRequestOperationManager.h */,
+				5F3240AA19F8A8D9004E994E /* OVCHTTPRequestOperationManager.m */,
+				5F3240AC19F8B091004E994E /* SResultModel.h */,
+				5F3240AD19F8B091004E994E /* SResultModel.m */,
+				5F4361F719F7AC9800B6F3B4 /* UserModel.h */,
+				5F4361F819F7AC9800B6F3B4 /* UserModel.m */,
 				5F163AA819F79BE50026080B /* Main.storyboard */,
-				5F163AAB19F79BE50026080B /* ViewController.h */,
-				5F163AAC19F79BE50026080B /* ViewController.m */,
 				5F163AAE19F79BE50026080B /* Images.xcassets */,
 				5F163A9D19F79BE50026080B /* Supporting Files */,
 			);
@@ -300,9 +315,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F163AAD19F79BE50026080B /* ViewController.m in Sources */,
 				5F163AA719F79BE50026080B /* AppDelegate.m in Sources */,
+				5F4361F919F7AC9800B6F3B4 /* UserModel.m in Sources */,
+				5F3240AE19F8B091004E994E /* SResultModel.m in Sources */,
 				5F163AA319F79BE50026080B /* main.m in Sources */,
+				5F4361FC19F7B59700B6F3B4 /* SearchResultViewController.m in Sources */,
+				5F3240AB19F8A8D9004E994E /* OVCHTTPRequestOperationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
