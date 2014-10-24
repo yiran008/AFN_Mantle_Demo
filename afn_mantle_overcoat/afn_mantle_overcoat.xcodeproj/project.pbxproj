@@ -25,8 +25,6 @@
 		5F4361F919F7AC9800B6F3B4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4361F819F7AC9800B6F3B4 /* UserModel.m */; };
 		5F4361FC19F7B59700B6F3B4 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4361FB19F7B59700B6F3B4 /* SearchResultViewController.m */; };
 		5F4FA96719F9F4F300AE9AD4 /* AFNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4FA96619F9F4F300AE9AD4 /* AFNRequest.m */; };
-		5FAF974419FA4F810029CE17 /* AFHTTPRequestOperationManager+AutoRetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAF974119FA4F810029CE17 /* AFHTTPRequestOperationManager+AutoRetry.m */; };
-		5FAF974519FA4F810029CE17 /* AFHTTPSessionManager+AutoRetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAF974319FA4F810029CE17 /* AFHTTPSessionManager+AutoRetry.m */; };
 		A5AFBAEBD796136218090225 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18908AE5EDB89837E2034A10 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -70,10 +68,6 @@
 		5F4361FB19F7B59700B6F3B4 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		5F4FA96519F9F4F300AE9AD4 /* AFNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNRequest.h; sourceTree = "<group>"; };
 		5F4FA96619F9F4F300AE9AD4 /* AFNRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNRequest.m; sourceTree = "<group>"; };
-		5FAF974019FA4F810029CE17 /* AFHTTPRequestOperationManager+AutoRetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPRequestOperationManager+AutoRetry.h"; sourceTree = "<group>"; };
-		5FAF974119FA4F810029CE17 /* AFHTTPRequestOperationManager+AutoRetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPRequestOperationManager+AutoRetry.m"; sourceTree = "<group>"; };
-		5FAF974219FA4F810029CE17 /* AFHTTPSessionManager+AutoRetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+AutoRetry.h"; sourceTree = "<group>"; };
-		5FAF974319FA4F810029CE17 /* AFHTTPSessionManager+AutoRetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+AutoRetry.m"; sourceTree = "<group>"; };
 		83203A0AE148A5618EBCBF80 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,24 +195,12 @@
 		5F3240B119F8E04F004E994E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5FAF973F19FA4F810029CE17 /* AFNAutoRetry */,
 				5F3240A919F8A8D9004E994E /* BBHTTPRequestOperationManager.h */,
 				5F3240AA19F8A8D9004E994E /* BBHTTPRequestOperationManager.m */,
 				5F4FA96519F9F4F300AE9AD4 /* AFNRequest.h */,
 				5F4FA96619F9F4F300AE9AD4 /* AFNRequest.m */,
 			);
 			name = Network;
-			sourceTree = "<group>";
-		};
-		5FAF973F19FA4F810029CE17 /* AFNAutoRetry */ = {
-			isa = PBXGroup;
-			children = (
-				5FAF974019FA4F810029CE17 /* AFHTTPRequestOperationManager+AutoRetry.h */,
-				5FAF974119FA4F810029CE17 /* AFHTTPRequestOperationManager+AutoRetry.m */,
-				5FAF974219FA4F810029CE17 /* AFHTTPSessionManager+AutoRetry.h */,
-				5FAF974319FA4F810029CE17 /* AFHTTPSessionManager+AutoRetry.m */,
-			);
-			path = AFNAutoRetry;
 			sourceTree = "<group>";
 		};
 		DF850E90ED35559A6159EFFB /* Pods */ = {
@@ -364,13 +346,11 @@
 			files = (
 				5F163AA719F79BE50026080B /* AppDelegate.m in Sources */,
 				5F4FA96719F9F4F300AE9AD4 /* AFNRequest.m in Sources */,
-				5FAF974419FA4F810029CE17 /* AFHTTPRequestOperationManager+AutoRetry.m in Sources */,
 				5F4361F919F7AC9800B6F3B4 /* UserModel.m in Sources */,
 				5F3240AE19F8B091004E994E /* SResultModel.m in Sources */,
 				5F163AA319F79BE50026080B /* main.m in Sources */,
 				5F4361FC19F7B59700B6F3B4 /* SearchResultViewController.m in Sources */,
 				5F3240AB19F8A8D9004E994E /* BBHTTPRequestOperationManager.m in Sources */,
-				5FAF974519FA4F810029CE17 /* AFHTTPSessionManager+AutoRetry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

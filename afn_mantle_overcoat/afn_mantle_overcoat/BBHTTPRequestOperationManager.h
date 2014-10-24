@@ -8,11 +8,16 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
-#import "AFHTTPRequestOperationManager+AutoRetry.h"
+
+#define  AFN_REQUEST_RETRY_COUNT 3
+#define  AFN_REQUEST_TIMEOUT 30.f
+
 @interface BBHTTPRequestOperationManager : AFHTTPRequestOperationManager
 
-- (void)cancelAllRequests;
 
+- (instancetype)initWithBaseURL:(NSURL *)url;
+
+- (void)cancelAllRequests;
 
 - (AFHTTPRequestOperation *)GET:(NSString *)APIString
                      parameters:(NSDictionary *)parameters
