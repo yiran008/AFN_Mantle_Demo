@@ -87,16 +87,17 @@
     [self.requst cancelAllRequests];
     self.requst = [AFNRequest api_UserNameSearchParam:@{@"pg":@"1",@"q":userName} completion:^(id response, NSError *error) {
         __strong __typeof (weakself) strongself = weakself;
-        if (!strongself)
+        [strongself hideSearchingAnimation];
+        if (error)
         {
-            return;
+            NSLog(@"network error %@",[error localizedDescription]);
         }
-        if (!error)
+        else
         {
             SResultModel *result = [MTLJSONAdapter modelOfClass:SResultModel.class fromJSONDictionary:response error:NULL];
             strongself.userArray = result.list;
             [strongself.listView reloadData];
-            [strongself hideSearchingAnimation];
+
         }
     }];
 }

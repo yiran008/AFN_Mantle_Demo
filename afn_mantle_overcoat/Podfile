@@ -12,3 +12,4 @@ target 'afn_mantle_overcoatTests' do
 end
 pod "AFNetworking", "~> 2.0"
 pod "Mantle"
+pod "ObjcAssociatedObjectHelpers"

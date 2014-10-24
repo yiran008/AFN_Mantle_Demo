@@ -39,7 +39,7 @@
              }
              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  if (completion) completion(operation.responseObject, error);
-             }];
+             } autoRetry:AFN_REQUEST_RETRY_COUNT];
 }
 
 - (AFHTTPRequestOperation *)HEAD:(NSString *)APIString
@@ -52,7 +52,7 @@
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                   if (completion) completion(operation.responseObject, error);
-              }];
+              } autoRetry:AFN_REQUEST_RETRY_COUNT];
 }
 
 - (AFHTTPRequestOperation *)POST:(NSString *)APIString
@@ -65,7 +65,7 @@
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                   if (completion) completion(operation.responseObject, error);
-              }];
+              } autoRetry:AFN_REQUEST_RETRY_COUNT];
 }
 
 - (AFHTTPRequestOperation *)POST:(NSString *)APIString
@@ -79,7 +79,7 @@
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                   if (completion) completion(operation.responseObject, error);
-              }];
+              } autoRetry:AFN_REQUEST_RETRY_COUNT];
 }
 
 - (AFHTTPRequestOperation *)PUT:(NSString *)APIString
@@ -92,7 +92,7 @@
              }
              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  if (completion) completion(operation.responseObject, error);
-             }];
+             } autoRetry:AFN_REQUEST_RETRY_COUNT];
 }
 
 - (AFHTTPRequestOperation *)PATCH:(NSString *)APIString
@@ -105,7 +105,7 @@
                }
                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                    if (completion) completion(operation.responseObject, error);
-               }];
+               } autoRetry:AFN_REQUEST_RETRY_COUNT];
 }
 
 - (AFHTTPRequestOperation *)DELETE:(NSString *)APIString
@@ -118,7 +118,7 @@
                 }
                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     if (completion) completion(operation.responseObject, error);
-                }];
+                } autoRetry:AFN_REQUEST_RETRY_COUNT];
 }
 
 @end

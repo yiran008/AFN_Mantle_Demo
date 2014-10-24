@@ -8,7 +8,7 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
-
+#import "AFHTTPRequestOperationManager+AutoRetry.h"
 @interface BBHTTPRequestOperationManager : AFHTTPRequestOperationManager
 
 - (void)cancelAllRequests;
