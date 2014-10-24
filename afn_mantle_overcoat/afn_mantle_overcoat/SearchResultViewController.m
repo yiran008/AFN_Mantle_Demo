@@ -7,14 +7,14 @@
 //
 
 #import "SearchResultViewController.h"
-#import "OVCHTTPRequestOperationManager.h"
 #import "SResultModel.h"
+#import "AFNRequest.h"
 @interface SearchResultViewController ()<UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *listView;
 @property (copy, nonatomic) NSArray *userArray;
 @property (strong, nonatomic) NSArray *searchList;
-@property (strong, nonatomic) OVCHTTPRequestOperationManager *requst;
+@property (strong, nonatomic) BBHTTPRequestOperationManager *requst;
 
 @end
 
@@ -40,7 +40,6 @@
     
     self.searchList = @[@"宝妈",@"孕期",@"辣妈",@"宝贝"];
     // Do any additional setup after loading the view.
-    self.requst = [OVCHTTPRequestOperationManager manager];
     
     self.navigationItem.rightBarButtonItem = ({
         UIBarButtonItem *searchItem = [[UIBarButtonItem alloc]initWithTitle:@"搜索" style:UIBarButtonItemStyleBordered target:self action:@selector(searchUser)];
@@ -57,13 +56,36 @@
     [self searchUserNamed:keyword];
 }
 
+//-(void)searchUserNamed:(NSString *)userName
+//{
+//    [self showSearchingAnimation];
+//    [self.requst cancelAllRequests];
+//    [self changeTitle:userName];
+//    __weak __typeof (self) weakself = self;
+//    [self.requst GET:[NSString stringWithFormat:@"%@/api/mobile_search/search_user",BABY_TREE_SERVER] parameters:@{@"pg":@"1",@"q":userName} completion:^(id response, NSError *error) {
+//        __strong __typeof (weakself) strongself = weakself;
+//        if (!strongself)
+//        {
+//            return;
+//        }
+//        if (!error)
+//        {
+//            SResultModel *result = [MTLJSONAdapter modelOfClass:SResultModel.class fromJSONDictionary:response error:NULL];
+//            strongself.userArray = result.list;
+//            [strongself hideSearchingAnimation];
+//            [strongself.listView reloadData];
+//        }
+//    }];
+//}
+
 -(void)searchUserNamed:(NSString *)userName
 {
     [self showSearchingAnimation];
-    [self.requst cancelAllRequests];
     [self changeTitle:userName];
+    
     __weak __typeof (self) weakself = self;
-    [self.requst GET:[NSString stringWithFormat:@"%@/api/mobile_search/search_user",BABY_TREE_SERVER] parameters:@{@"pg":@"1",@"q":userName} completion:^(id response, NSError *error) {
+    [self.requst cancelAllRequests];
+    self.requst = [AFNRequest api_UserNameSearchParam:@{@"pg":@"1",@"q":userName} completion:^(id response, NSError *error) {
         __strong __typeof (weakself) strongself = weakself;
         if (!strongself)
         {
@@ -73,12 +95,11 @@
         {
             SResultModel *result = [MTLJSONAdapter modelOfClass:SResultModel.class fromJSONDictionary:response error:NULL];
             strongself.userArray = result.list;
-            [strongself hideSearchingAnimation];
             [strongself.listView reloadData];
+            [strongself hideSearchingAnimation];
         }
     }];
 }
-
 -(void)showSearchingAnimation
 {
     self.navigationItem.leftBarButtonItem = ({
