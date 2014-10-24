@@ -85,6 +85,7 @@
     
     __weak __typeof (self) weakself = self;
     [self.requst cancelAllRequests];
+    self.requst = nil;
     self.requst = [AFNRequest api_UserNameSearchParam:@{@"pg":@"1",@"q":userName} completion:^(id response, NSError *error) {
         __strong __typeof (weakself) strongself = weakself;
         [strongself hideSearchingAnimation];
