@@ -12,6 +12,8 @@
 #define  AFN_REQUEST_RETRY_COUNT 3
 #define  AFN_REQUEST_TIMEOUT 30.f
 
+typedef void(^AFNCompletionBlock) (id response,NSError* error);
+
 @interface BBHTTPRequestOperationManager : AFHTTPRequestOperationManager
 
 
@@ -22,36 +24,36 @@
 #pragma mark - Common Use
 - (AFHTTPRequestOperation *)GET:(NSString *)APIString
                      parameters:(NSDictionary *)parameters
-                     completion:(void (^)(id response, NSError *error))completion;
+                     completion:(AFNCompletionBlock)completion;
 
 
 - (AFHTTPRequestOperation *)HEAD:(NSString *)APIString
                       parameters:(id)parameters
-                      completion:(void (^)(id response, NSError *error))completion;
+                      completion:(AFNCompletionBlock)completion;
 
 
 - (AFHTTPRequestOperation *)POST:(NSString *)APIString
                       parameters:(NSDictionary *)parameters
-                      completion:(void (^)(id response, NSError *error))completion;
+                      completion:(AFNCompletionBlock)completion;
 
 
 - (AFHTTPRequestOperation *)POST:(NSString *)APIString
                       parameters:(NSDictionary *)parameters
        constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
-                      completion:(void (^)(id response, NSError *error))completion;
+                      completion:(AFNCompletionBlock)completion;
 
 - (AFHTTPRequestOperation *)PUT:(NSString *)APIString
                      parameters:(NSDictionary *)parameters
-                     completion:(void (^)(id response, NSError *error))completion;
+                     completion:(AFNCompletionBlock)completion;
 
 - (AFHTTPRequestOperation *)PATCH:(NSString *)APIString
                        parameters:(NSDictionary *)parameters
-                       completion:(void (^)(id response, NSError *error))completion;
+                       completion:(AFNCompletionBlock)completion;
 
 
 - (AFHTTPRequestOperation *)DELETE:(NSString *)APIString
                         parameters:(NSDictionary *)parameters
-                        completion:(void (^)(id response, NSError *error))completion;
+                        completion:(AFNCompletionBlock)completion;
 #pragma mark- Retry Support
 
 - (AFHTTPRequestOperation *)POST:(NSString *)URLString

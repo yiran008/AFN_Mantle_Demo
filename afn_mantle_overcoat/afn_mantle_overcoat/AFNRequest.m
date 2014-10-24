@@ -37,7 +37,7 @@
 
 #pragma mark- API列表
 
-+(BBHTTPRequestOperationManager*)api_UserNameSearchParam:(NSDictionary*)param completion:(afnCompletionBlock)completion
++(BBHTTPRequestOperationManager*)api_UserNameSearchParam:(NSDictionary*)param completion:(AFNCompletionBlock)completion
 {
     BBHTTPRequestOperationManager* manager = [self babytreeManager];
     [manager GET:@"api/mobile_search/search_user" parameters:param

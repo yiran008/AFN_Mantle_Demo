@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BBHTTPRequestOperationManager.h"
 
-typedef void(^afnCompletionBlock) (id response,NSError* error);
-
 @interface AFNRequest : NSObject
 
 //期望加入每个API时候加入如下的方法说明，方便查看、使用、调试
@@ -23,5 +21,5 @@ typedef void(^afnCompletionBlock) (id response,NSError* error);
  *
  *  @return AFHTTPRequestOperationManager
  */
-+(BBHTTPRequestOperationManager*)api_UserNameSearchParam:(NSDictionary*)param completion:(afnCompletionBlock)completion;
++(BBHTTPRequestOperationManager*)api_UserNameSearchParam:(NSDictionary*)param completion:(AFNCompletionBlock)completion;
 @end

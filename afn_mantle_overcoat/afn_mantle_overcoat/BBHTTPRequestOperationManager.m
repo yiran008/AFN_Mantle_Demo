@@ -66,7 +66,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (AFHTTPRequestOperation *)GET:(NSString *)APIString
                      parameters:(NSDictionary *)parameters
-                     completion:(void (^)(id, NSError *))completion
+                     completion:(AFNCompletionBlock)completion
 {
     return [self GET:APIString parameters:parameters
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -79,7 +79,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (AFHTTPRequestOperation *)HEAD:(NSString *)APIString
                       parameters:(id)parameters
-                      completion:(void (^)(id, NSError *))completion
+                      completion:(AFNCompletionBlock)completion
 {
     return [self HEAD:APIString parameters:parameters
               success:^(AFHTTPRequestOperation *operation) {
@@ -92,7 +92,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (AFHTTPRequestOperation *)POST:(NSString *)APIString
                       parameters:(NSDictionary *)parameters
-                      completion:(void (^)(id, NSError *))completion
+                      completion:(AFNCompletionBlock)completion
 {
     return [self POST:APIString parameters:parameters
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -106,7 +106,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 - (AFHTTPRequestOperation *)POST:(NSString *)APIString
                       parameters:(NSDictionary *)parameters
        constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block
-                      completion:(void (^)(id, NSError *))completion
+                      completion:(AFNCompletionBlock)completion
 {
     return [self POST:APIString parameters:parameters constructingBodyWithBlock:block
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -119,7 +119,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (AFHTTPRequestOperation *)PUT:(NSString *)APIString
                      parameters:(NSDictionary *)parameters
-                     completion:(void (^)(id, NSError *))completion
+                     completion:(AFNCompletionBlock)completion
 {
     return [self PUT:APIString parameters:parameters
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -132,7 +132,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (AFHTTPRequestOperation *)PATCH:(NSString *)APIString
                        parameters:(NSDictionary *)parameters
-                       completion:(void (^)(id, NSError *))completion
+                       completion:(AFNCompletionBlock)completion
 {
     return [self PATCH:APIString parameters:parameters
                success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -145,7 +145,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (AFHTTPRequestOperation *)DELETE:(NSString *)APIString
                         parameters:(NSDictionary *)parameters
-                        completion:(void (^)(id, NSError *))completion
+                        completion:(AFNCompletionBlock)completion
 {
     return [self DELETE:APIString parameters:parameters
                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
